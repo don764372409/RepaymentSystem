@@ -16,7 +16,14 @@ public class ContentService{
 			throw new RuntimeException("短信模板内容不能为空.");
 		}
 		try {
-			contentDAO.updateDefaultUserTo0();
+			if (obj.getDefaultUse()==1) {
+				contentDAO.updateDefaultUserTo0();
+			}else {
+				Content sysContent = selectOneByDefaultUser();
+				if (sysContent==null) {
+					obj.setDefaultUse(1);
+				}
+			}
 		} catch (Exception e) {
 			throw new RuntimeException("修改失败,请稍后重试.");
 		}
@@ -36,9 +43,16 @@ public class ContentService{
 			throw new RuntimeException("短信模板内容不能为空.");
 		}
 		try {
-			contentDAO.updateDefaultUserTo0();
+			if (obj.getDefaultUse()==1) {
+				contentDAO.updateDefaultUserTo0();
+			}else {
+				Content sysContent = selectOneByDefaultUser();
+				if (sysContent.getId()==sysContent.getId()) {
+					throw new RuntimeException("当前模板为默认模板,不能修改为非默认.");
+				}
+			}
 		} catch (Exception e) {
-			throw new RuntimeException("修改失败,请稍后重试.");
+			throw new RuntimeException(e.getMessage());
 		}
 		int i = contentDAO.update(obj);
 		if (i!=1) {
@@ -65,6 +79,9 @@ public class ContentService{
 
 	public Content selectOneById(Long id){
 		return contentDAO.selectOneById(id);
+	}
+	public Content selectOneByDefaultUser(){
+		return contentDAO.selectOneByDefaultUser();
 	}
 
 

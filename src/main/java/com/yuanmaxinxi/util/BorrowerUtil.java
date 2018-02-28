@@ -6,18 +6,21 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class BorrowerUtil {
-//	private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//	public static void main(String[] args) {
-//		Date nowTime = new Date();
-//		try {
-//			Date beginTime =sdf.parse("2018-10-30");
-//			Date endTime = sdf.parse("2019-10-30");
-//			boolean b = isSend(nowTime,beginTime,endTime);
-//			System.err.println(b);
-//		} catch (ParseException e) {
-//			e.printStackTrace();
-//		}
-//	}
+	private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	public static void main(String[] args) {
+		Date nowTime = new Date();
+		try {
+			Date beginTime =sdf.parse("2018-1-30");
+			Date endTime = sdf.parse("2018-4-29");
+			System.err.println("当天日期:"+sdf.format(nowTime));
+			System.err.println("借款日期:"+sdf.format(beginTime));
+			System.err.println("截止日期:"+sdf.format(endTime));
+			boolean b = isSend(nowTime,beginTime,endTime);
+			System.err.println(b?"发短信":"不发短信");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+	}
 	/**
      * 判断今天是否发送短信
      * @param nowTime   当前时间
@@ -26,39 +29,7 @@ public class BorrowerUtil {
      * @return
      */
     public static boolean isSend(Date nowTime, Date beginTime, Date endTime) {
-        Calendar date = Calendar.getInstance();
-        date.setTime(nowTime);
-        Calendar begin = Calendar.getInstance();
-        begin.setTime(beginTime);
-        //从下个月减2天开始发
-        begin.add(Calendar.MARCH, 1);
-//        System.err.println("还款日:"+sdf.format(begin.getTime()));
-        //下个月的还款时间
-        //提醒时间
-        begin.add(Calendar.DAY_OF_MONTH,-2);
-//        System.err.println("还款提醒日:"+sdf.format(begin.getTime()));
-        Calendar end = Calendar.getInstance();
-        end.setTime(endTime);
-        if (date.after(begin) && date.before(end)) {
-        	//在还款期限类
-        	//还款日的前两天是今天
-        	int i = begin.get(Calendar.DAY_OF_MONTH);
-        	System.err.println("还款日提醒日:"+i);
-        	int now = date.get(Calendar.DAY_OF_MONTH);
-        	System.err.println("今天:"+now);
-        	if (i==now) {
-				return true;
-			}
-			begin.add(Calendar.DAY_OF_MONTH, 2);
-			i = begin.get(Calendar.DAY_OF_MONTH);
-			System.err.println("还款日:"+i);
-			//还款日是今天
-			if (i==now) {
-				return true;
-			}
-            return false;
-        } else {
-            return false;
-        }
+    	//计算当月的还款日
+    	return false;
     }
 }

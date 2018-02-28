@@ -40,12 +40,12 @@
   <table class="table table-border table-bordered table-hover table-bg table-sort">
     <thead>
       <tr class="text-c">
-        <th width="80">ID</th>
+        <th width="40">ID</th>
         <th width="100">姓名</th>
         <th width="90">手机</th>
         <th width="130">借款时间</th>
         <th width="130">还款结束时间</th>
-        <th width="100">操作</th>
+        <th width="220">操作</th>
       </tr>
     </thead>
     <tbody>
@@ -57,9 +57,9 @@
         <td>${obj.loanTime?string("yyyy-MM-dd")}</td>
         <td>${obj.repaymentTime?string("yyyy-MM-dd")}</td>
         <td class="f-14 user-manage">
-        	<a title="编辑" href="javascript:;" onclick="edit('添加短信用户','/borrower/showEdit',${obj.id})" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
-        	<a title="删除" href="javascript:;" onclick="deleteObj(this,'${obj.name}','/borrower/delete',${obj.id})" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe609;</i></a>
-        	<a title="送短信" href="javascript:;" onclick="sendMessage('发送短信','/borrower/showSendMessage',${obj.id})" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe68a;</i></a>
+        	<a title="编辑" href="javascript:;" onclick="edit('添加短信用户','/borrower/showEdit',${obj.id})" class="btn btn-primary radius" style="text-decoration:none">修改</a>
+        	<a title="删除" href="javascript:;" onclick="deleteObj(this,'${obj.name}','/borrower/delete',${obj.id})" class="btn btn-primary radius" style="text-decoration:none">删除</a>
+        	<a title="送短信" href="javascript:;" onclick="sendMessage('发送短信','/borrower/showSendMessage',${obj.id})" class="btn btn-primary radius" style="text-decoration:none">发送短信</a>
        	</td>
       </tr>
      </#list>

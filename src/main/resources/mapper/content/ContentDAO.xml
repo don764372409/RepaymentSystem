@@ -22,6 +22,9 @@
 	<select id="selectOneById" parameterType="Long" resultMap="ContentResultMap">
 		select * from t_content where id=#{id}
 	</select>
+	<select id="selectOneByDefaultUser" parameterType="Long" resultMap="ContentResultMap">
+		select * from t_content where defaultUse=1
+	</select>
 	<select id="selectDefaultContent" resultMap="ContentResultMap">
 		select * from t_content where defaultUse=1
 	</select>

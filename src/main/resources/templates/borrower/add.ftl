@@ -56,7 +56,7 @@
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-3 col-sm-3">还款时间：</label>
+			<label class="form-label col-xs-3 col-sm-3">还款结束时间：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" placeholder="请输入还款时间" onfocus="WdatePicker()" name="repaymentTime" class="input-text Wdate">	
 			</div>

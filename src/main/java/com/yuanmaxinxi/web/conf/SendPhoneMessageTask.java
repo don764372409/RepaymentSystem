@@ -1,4 +1,4 @@
-package com.yuanmaxinxi.webconf;
+package com.yuanmaxinxi.web.conf;
 
 import java.util.Date;
 import java.util.List;

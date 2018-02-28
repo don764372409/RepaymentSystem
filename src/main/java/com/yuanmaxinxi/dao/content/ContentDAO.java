@@ -21,4 +21,6 @@ public interface ContentDAO{
 	void updateDefaultUserTo0();
 
 	Content selectDefaultContent();
+
+	Content selectOneByDefaultUser();
 }
