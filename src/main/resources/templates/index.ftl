@@ -38,6 +38,9 @@
 	#Hui-userbar{
 		display:block !important; 
 	}
+	#Hui-skin{
+		display: none;
+	}
 }
 </style>
 </head>
