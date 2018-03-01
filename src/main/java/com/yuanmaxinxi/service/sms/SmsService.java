@@ -88,7 +88,7 @@ public class SmsService{
 				b.setId(0L);
 				b.setPhone(user.getPhone());
 				Content c = new Content();
-				c.setContent("提醒短信发送失败!手机号码:"+sms.getPhone()+"|姓名:"+brr.getName()+"|当前短信余额:"+map.get("remainpoint")+"。请前往平台进行手动发送.");
+				c.setContent("借款人姓名："+brr.getName()+" 手机号码:"+sms.getPhone()+" 紧急联系人：姓名："+brr.getName2()+" 电话："+brr.getPhone2()+" 短信未发送成功.");
 				sendErrorMessage(b,c);
 			}
 			sms.setStatus(status);
@@ -134,6 +134,7 @@ public class SmsService{
 		//要保存新的模板
 		if ("yes".equals(isSave)) {
 			ct.setDefaultUse(0);
+			ct.setTitle("新模板");
 			int i = contentDAO.insert(ct);
 			if (i!=1) {
 				throw new RuntimeException("添加新模板失败");

@@ -4,14 +4,15 @@
 <mapper namespace="com.yuanmaxinxi.dao.content.ContentDAO">
 	<resultMap type="Content" id="ContentResultMap">
 		<id column="id" property="id"/>
+		<result column="title" property="title"/>
 		<result column="content" property="content"/>
 		<result column="defaultUse" property="defaultUse"/>
 	</resultMap>
 	<insert id="insert" parameterType="Content">
-		insert into t_content(content,defaultUse) values(#{content},#{defaultUse})
+		insert into t_content(title,content,defaultUse) values(#{title},#{content},#{defaultUse})
 	</insert>
 	<update id="update" parameterType="Content">
-		update t_content set content=#{content},defaultUse=#{defaultUse} where id=#{id}
+		update t_content set title=#{title},content=#{content},defaultUse=#{defaultUse} where id=#{id}
 	</update>
 	<update id="updateDefaultUserTo0">
 		update t_content set defaultUse=0

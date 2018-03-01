@@ -50,6 +50,18 @@
 			</div>
 		</div>
 		<div class="row cl">
+			<label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>紧急联系人：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="请输入姓名" name="name2">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>紧急电话：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="请输入手机" name="phone2">
+			</div>
+		</div>
+		<div class="row cl">
 			<label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>借款时间：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" placeholder="请输入借款时间" onfocus="WdatePicker()" name="loanTime" class="input-text Wdate">	
@@ -76,6 +88,13 @@ $(function(){
 				required:true
 			},
 			phone:{
+				required:true,
+				isMobile:true
+			},
+			name2:{
+				required:true
+			},
+			phone2:{
 				required:true,
 				isMobile:true
 			},

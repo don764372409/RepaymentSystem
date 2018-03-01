@@ -4,16 +4,18 @@
 <mapper namespace="com.yuanmaxinxi.dao.borrower.BorrowerDAO">
 	<resultMap type="Borrower" id="BorrowerResultMap">
 		<id column="id" property="id"/>
+		<result column="name2" property="name2"/>
+		<result column="phone2" property="phone2"/>
 		<result column="name" property="name"/>
 		<result column="phone" property="phone"/>
 		<result column="loanTime" property="loanTime"/>
 		<result column="repaymentTime" property="repaymentTime"/>
 	</resultMap>
 	<insert id="insert" parameterType="Borrower">
-		insert into t_borrower(name,phone,loanTime,repaymentTime) values(#{name},#{phone},#{loanTime},#{repaymentTime})
+		insert into t_borrower(name,phone,name2,phone2,loanTime,repaymentTime) values(#{name},#{phone},#{name2},#{phone2},#{loanTime},#{repaymentTime})
 	</insert>
 	<update id="update" parameterType="Borrower">
-		update t_borrower set name=#{name},phone=#{phone},loanTime=#{loanTime},repaymentTime=#{repaymentTime} where id=#{id}
+		update t_borrower set name=#{name},phone=#{phone},name2=#{name2},phone2=#{phone2},loanTime=#{loanTime},repaymentTime=#{repaymentTime} where id=#{id}
 	</update>
 	<delete id="delete" parameterType="Long">
 		delete from t_borrower where id=#{id}

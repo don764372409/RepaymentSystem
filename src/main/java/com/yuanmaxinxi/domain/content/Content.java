@@ -2,8 +2,16 @@ package com.yuanmaxinxi.domain.content;
 
 public class Content {
 	private Long id;
+	private String title;
 	private String content;
 	private int defaultUse;//0-不是默认内容  1-是默认内容
+	
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
 	public Long getId() {
 		return id;
 	}

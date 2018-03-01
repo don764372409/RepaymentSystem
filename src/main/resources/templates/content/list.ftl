@@ -41,6 +41,7 @@
     <thead>
       <tr class="text-c">
         <th width="40">ID</th>
+        <th width="100">模板标题</th>
         <th width="100">模板内容</th>
         <th width="100">是否默认模板</th>
         <th width="100">操作</th>
@@ -50,6 +51,7 @@
     <#list list as obj>
       <tr class="text-c">
         <td>${obj.id}</td>
+        <td>${obj.title}</td>
         <td>${obj.content}</td>
         <td>
         	<#if obj.defaultUse==1>

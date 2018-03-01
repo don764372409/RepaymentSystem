@@ -43,8 +43,10 @@
         <th width="40">ID</th>
         <th width="100">姓名</th>
         <th width="90">手机</th>
+        <th width="100">紧急联系人</th>
+        <th width="90">紧急电话</th>
         <th width="130">借款时间</th>
-        <th width="130">还款结束时间</th>
+        <th width="130">还款截止时间</th>
         <th width="220">操作</th>
       </tr>
     </thead>
@@ -54,6 +56,8 @@
         <td>${obj.id}</td>
         <td>${obj.name}</td>
         <td>${obj.phone}</td>
+        <td>${obj.name2}</td>
+        <td>${obj.phone2}</td>
         <td>${obj.loanTime?string("yyyy-MM-dd")}</td>
         <td>${obj.repaymentTime?string("yyyy-MM-dd")}</td>
         <td class="f-14 user-manage">
