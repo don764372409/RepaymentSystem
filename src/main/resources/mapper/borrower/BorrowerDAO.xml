@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuanmaxinxi.dao.borrower.BorrowerDAO">
+	<resultMap type="Borrower" id="BorrowerResultMap">
+		<id column="id" property="id"/>
+		<result column="name" property="name"/>
+		<result column="phone" property="phone"/>
+		<result column="loanTime" property="loanTime"/>
+		<result column="repaymentTime" property="repaymentTime"/>
+	</resultMap>
+	<insert id="insert" parameterType="Borrower">
+		insert into t_borrower(name,phone,loanTime,repaymentTime) values(#{name},#{phone},#{loanTime},#{repaymentTime})
+	</insert>
+	<update id="update" parameterType="Borrower">
+		update t_borrower set name=#{name},phone=#{phone},loanTime=#{loanTime},repaymentTime=#{repaymentTime} where id=#{id}
+	</update>
+	<delete id="delete" parameterType="Long">
+		delete from t_borrower where id=#{id}
+	</delete>
+	<select id="selectOneById" parameterType="Long" resultMap="BorrowerResultMap">
+		select * from t_borrower where id=#{id}
+	</select>
+	<select id="selectAll" resultMap="BorrowerResultMap">
+		select * from t_borrower
+	</select>
+</mapper>

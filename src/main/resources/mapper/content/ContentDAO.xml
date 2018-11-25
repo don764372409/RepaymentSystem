@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuanmaxinxi.dao.content.ContentDAO">
+	<resultMap type="Content" id="ContentResultMap">
+		<id column="id" property="id"/>
+		<result column="content" property="content"/>
+		<result column="defaultUse" property="defaultUse"/>
+	</resultMap>
+	<insert id="insert" parameterType="Content">
+		insert into t_content(content,defaultUse) values(#{content},#{defaultUse})
+	</insert>
+	<update id="update" parameterType="Content">
+		update t_content set content=#{content},defaultUse=#{defaultUse} where id=#{id}
+	</update>
+	<delete id="delete" parameterType="Long">
+		delete from t_content where id=#{id}
+	</delete>
+	<select id="selectOneById" parameterType="Long" resultMap="ContentResultMap">
+		select * from t_content where id=#{id}
+	</select>
+	<select id="selectAll" resultMap="ContentResultMap">
+		select * from t_content
+	</select>
+</mapper>
