@@ -8,49 +8,49 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.yuanmaxinxi.domain.borrower.Borrower;
+import com.yuanmaxinxi.domain.content.Content;
 import com.yuanmaxinxi.dto.ResultDTO;
-import com.yuanmaxinxi.service.borrower.BorrowerService;
+import com.yuanmaxinxi.service.content.ContentService;
 
 @Controller
-@RequestMapping("/borrower")
-public class BorrowerController {
+@RequestMapping("/content")
+public class ContentController {
 	@Autowired
-	private BorrowerService borrowerService;
+	private ContentService contentService;
 	@RequestMapping("/list")
 	public String list(Model model) {
-		List<Borrower> list = borrowerService.selectAll();
+		List<Content> list = contentService.selectAll();
 		model.addAttribute("list", list);
-		return "borrower/list";
+		return "content/list";
 	}
 	
 	@RequestMapping("/showAdd")
 	public String showAdd() {
-		return "borrower/add";
+		return "content/add";
 	}
 	@RequestMapping("/showEdit")
 	public String showEdit(Long id,Model model) {
-		Borrower obj = borrowerService.selectOneById(id);
+		Content obj = contentService.selectOneById(id);
 		model.addAttribute("obj", obj);
-		return "borrower/edit";
+		return "content/edit";
 	}
 	@RequestMapping("/add")
-	public @ResponseBody ResultDTO add(Borrower borr) {
+	public @ResponseBody ResultDTO add(Content obj) {
 		ResultDTO dto;
 		try {
-			borrowerService.insert(borr);
-			dto = ResultDTO.getIntance(true, "短信用户添加成功.");
+			contentService.insert(obj);
+			dto = ResultDTO.getIntance(true, "短信模板添加成功.");
 		} catch (Exception e) {
 			dto = ResultDTO.getIntance(false, e.getMessage());
 		}
 		return dto;
 	}
 	@RequestMapping("/edit")
-	public @ResponseBody ResultDTO edit(Borrower borr) {
+	public @ResponseBody ResultDTO edit(Content obj) {
 		ResultDTO dto;
 		try {
-			borrowerService.update(borr);
-			dto = ResultDTO.getIntance(true, "短信用户修改成功.");
+			contentService.update(obj);
+			dto = ResultDTO.getIntance(true, "短信模板修改成功.");
 		} catch (Exception e) {
 			dto = ResultDTO.getIntance(false, e.getMessage());
 		}
@@ -60,8 +60,8 @@ public class BorrowerController {
 	public @ResponseBody ResultDTO delete(Long id) {
 		ResultDTO dto;
 		try {
-			borrowerService.delete(id);
-			dto = ResultDTO.getIntance(true, "短信用户删除成功.");
+			contentService.delete(id);
+			dto = ResultDTO.getIntance(true, "短信模板删除成功.");
 		} catch (Exception e) {
 			dto = ResultDTO.getIntance(false, e.getMessage());
 		}

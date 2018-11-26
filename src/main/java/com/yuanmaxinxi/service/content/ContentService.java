@@ -1,5 +1,6 @@
 package com.yuanmaxinxi.service.content;
 import com.yuanmaxinxi.domain.content.Content;
+import com.yuanmaxinxi.util.StringUtil;
 import com.yuanmaxinxi.dao.content.ContentDAO;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,20 +11,51 @@ public class ContentService{
 	@Autowired
 	private ContentDAO contentDAO;
 	@Transactional
-	public int insert(Content obj){
-		return contentDAO.insert(obj);
+	public void insert(Content obj){
+		if (!StringUtil.isNotNullAndEmpty(obj.getContent())) {
+			throw new RuntimeException("短信模板内容不能为空.");
+		}
+		try {
+			contentDAO.updateDefaultUserTo0();
+		} catch (Exception e) {
+			throw new RuntimeException("修改失败,请稍后重试.");
+		}
+		int i = contentDAO.insert(obj);
+		if (i!=1) {
+			throw new RuntimeException("短信模板添加失败,请稍后重试.");
+		}
 	}
 
 
 	@Transactional
-	public int update(Content obj){
-		return contentDAO.update(obj);
+	public void update(Content obj){
+		if (obj.getId()==null||obj.getId()<=0) {
+			throw new RuntimeException("非法访问.");
+		}
+		if (!StringUtil.isNotNullAndEmpty(obj.getContent())) {
+			throw new RuntimeException("短信模板内容不能为空.");
+		}
+		try {
+			contentDAO.updateDefaultUserTo0();
+		} catch (Exception e) {
+			throw new RuntimeException("修改失败,请稍后重试.");
+		}
+		int i = contentDAO.update(obj);
+		if (i!=1) {
+			throw new RuntimeException("短信模板添加失败,请稍后重试.");
+		}
 	}
 
 
 	@Transactional
-	public int delete(Long id){
-		return contentDAO.delete(id);
+	public void delete(Long id){
+		if (id==null||id<=0) {
+			throw new RuntimeException("非法访问.");
+		}
+		int i = contentDAO.delete(id);
+		if (i!=1) {
+			throw new RuntimeException("短信模板添加失败,请稍后重试.");
+		}
 	}
 
 

@@ -2,11 +2,15 @@ package com.yuanmaxinxi.domain.borrower;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Borrower {
 	private Long id;
 	private String name;
 	private String phone;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date loanTime;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date repaymentTime;
 	public Long getId() {
 		return id;

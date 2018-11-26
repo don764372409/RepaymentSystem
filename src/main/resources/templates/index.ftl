@@ -26,15 +26,15 @@
 <body>
 <header class="navbar-wrapper">
 	<div class="navbar navbar-fixed-top">
-		<div class="container-fluid cl"> <a class="logo navbar-logo f-l mr-10 hidden-xs" href="/index/">短信自动发送平台</a> <a class="logo navbar-logo-m f-l mr-10 visible-xs" href="/aboutHui.shtml">H-ui</a> 
+		<div class="container-fluid cl"> <a class="logo navbar-logo f-l mr-10 hidden-xs" href="/index/">短信自动发送平台</a> 
 			<a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:;">&#xe667;</a>
 			<nav class="nav navbar-nav">
 				<ul class="cl">
-					<li class="dropDown dropDown_hover"><a href="javascript:;" class="dropDown_A"><i class="Hui-iconfont">&#xe600;</i> 新增 <i class="Hui-iconfont">&#xe6d5;</i></a>
-						<ul class="dropDown-menu menu radius box-shadow">
-							<li><a href="javascript:;" onclick="picture_add('添加资讯','picture-add.html')"><i class="Hui-iconfont">&#xe616;</i> 短信模板</a></li>
-							<li><a href="javascript:;" onclick="article_add('添加资讯','article-add.html')"><i class="Hui-iconfont">&#xe62d;</i> 短信用户</a></li>
-					</ul>
+<!-- 					<li class="dropDown dropDown_hover"><a href="javascript:;" class="dropDown_A"><i class="Hui-iconfont">&#xe600;</i> 新增 <i class="Hui-iconfont">&#xe6d5;</i></a> -->
+<!-- 						<ul class="dropDown-menu menu radius box-shadow"> -->
+<!-- 							<li><a href="javascript:;" onclick="content_add('添加短信模板','/content/showAdd')"><i class="Hui-iconfont">&#xe616;</i> 短信模板</a></li> -->
+<!-- 							<li><a href="javascript:;" onclick="borrower_add('添加短信用户','/borrower/showAdd')"><i class="Hui-iconfont">&#xe62d;</i> 短信用户</a></li> -->
+<!-- 					</ul> -->
 				</li>
 			</ul>
 		</nav>
@@ -68,7 +68,7 @@
 			<dt><i class="Hui-iconfont">&#xe616;</i> 短信模板管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="article-list.html" data-title="资讯管理" href="javascript:void(0)">短信模板</a></li>
+					<li><a data-href="/content/list" data-title="短信模板" href="javascript:void(0)">短信模板</a></li>
 			</ul>
 		</dd>
 	</dl>
@@ -77,7 +77,7 @@
 			<dt><i class="Hui-iconfont">&#xe62d;</i> 短信用户管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="/borrower/list" data-title="角色管理" href="javascript:void(0)">短信用户</a></li>
+					<li><a data-href="/borrower/list" data-title="短信用户" href="javascript:void(0)">短信用户</a></li>
 			</ul>
 		</dd>
 	</dl>
@@ -124,21 +124,7 @@
 <script type="text/javascript" src="/H-ui/static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
 <script type="text/javascript">
 <!--请在下方写此页面业务相关的脚本-->
-/*个人信息*/
-function myselfinfo(){
-	layer.open({
-		type: 1,
-		area: ['300px','200px'],
-		fix: false, //不固定
-		maxmin: true,
-		shade:0.4,
-		title: '查看信息',
-		content: '<div>管理员信息</div>'
-	});
-}
-
-/*资讯-添加*/
-function article_add(title,url){
+function borrower_add(title,url){
 	var index = layer.open({
 		type: 2,
 		title: title,
@@ -146,27 +132,13 @@ function article_add(title,url){
 	});
 	layer.full(index);
 }
-/*图片-添加*/
-function picture_add(title,url){
+function content_add(title,url){
 	var index = layer.open({
 		type: 2,
 		title: title,
 		content: url
 	});
 	layer.full(index);
-}
-/*产品-添加*/
-function product_add(title,url){
-	var index = layer.open({
-		type: 2,
-		title: title,
-		content: url
-	});
-	layer.full(index);
-}
-/*用户-添加*/
-function member_add(title,url,w,h){
-	layer_show(title,url,w,h);
 }
 
 

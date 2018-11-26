@@ -47,14 +47,14 @@ public class LoginController {
 		ResultDTO dto;
 		try {
 			String sysCode = (String)session.getAttribute("code");
-			if (!StringUtil.isNotNullAndEmpty(sysCode)) {
-				dto = ResultDTO.getIntance(false,"请刷新页面.");
-				return dto;
-			}
-			if (!sysCode.equalsIgnoreCase(code)) {
-				dto = ResultDTO.getIntance(false,"验证码输入错误.");
-				return dto;
-			}
+//			if (!StringUtil.isNotNullAndEmpty(sysCode)) {
+//				dto = ResultDTO.getIntance(false,"请刷新页面.");
+//				return dto;
+//			}
+//			if (!sysCode.equalsIgnoreCase(code)) {
+//				dto = ResultDTO.getIntance(false,"验证码输入错误.");
+//				return dto;
+//			}
 			User loginUser = userService.login(user);
 			session.setAttribute("loginUser", loginUser);
 			dto = ResultDTO.getIntance(true,"登录成功,页面跳转中...");

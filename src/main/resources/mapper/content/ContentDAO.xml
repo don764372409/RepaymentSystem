@@ -13,6 +13,9 @@
 	<update id="update" parameterType="Content">
 		update t_content set content=#{content},defaultUse=#{defaultUse} where id=#{id}
 	</update>
+	<update id="updateDefaultUserTo0">
+		update t_content set defaultUse=0
+	</update>
 	<delete id="delete" parameterType="Long">
 		delete from t_content where id=#{id}
 	</delete>

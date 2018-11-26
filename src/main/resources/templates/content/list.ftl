@@ -22,18 +22,18 @@
 <title>用户管理</title>
 </head>
 <body>
-<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 短信用户管理 <span class="c-gray en">&gt;</span> 短信用户 <a class="btn btn-success radius r btn-refresh" style="line-height:1.6em;margin-top:3px" onclick="location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 短信模板管理 <span class="c-gray en">&gt;</span> 短信模板 <a class="btn btn-success radius r btn-refresh" style="line-height:1.6em;margin-top:3px" onclick="location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="pd-20">
 <!--   <div class="text-c"> 短信发送时间： -->
 <!--     <input type="text" onfocus="WdatePicker()" id="datemin" class="input-text Wdate" style="width:120px;"> -->
 <!--     - -->
 <!--     <input type="text" onfocus="WdatePicker()" id="datemax" class="input-text Wdate" style="width:120px;"> -->
-<!--     <input type="text" class="input-text" style="width:250px" placeholder="输入短信用户姓名、电话等进行查询" id="" name=""><button type="submit" class="btn btn-success" id="" name=""><i class="icon-search"></i> 搜用户</button> -->
+<!--     <input type="text" class="input-text" style="width:250px" placeholder="输入用户模板姓名、电话等进行查询" id="" name=""><button type="submit" class="btn btn-success" id="" name=""><i class="icon-search"></i> 搜用户</button> -->
 
 <!--   </div> -->
   <div class="cl pd-5 bg-1 bk-gray mt-20">
 <!--     <span class="l"><a href="javascript:;" onclick="deleteObj()" class="btn btn-danger radius"><i class="icon-trash"></i> 删除用户</a> -->
-    <a href="javascript:;" onclick="addObj('550','320','添加短信用户','/borrower/showAdd')" class="btn btn-primary radius"><i class="icon-plus"></i> 添加用户</a></span>
+    <a href="javascript:;" onclick="addObj('550','320','添加短信模板','/content/showAdd')" class="btn btn-primary radius"><i class="icon-plus"></i> 添加短信模板</a></span>
     <span class="r">共有数据：<strong>${list?size}</strong> 条</span>
   </div>
   <div class="mt-20"></div>
@@ -41,10 +41,8 @@
     <thead>
       <tr class="text-c">
         <th width="80">ID</th>
-        <th width="100">姓名</th>
-        <th width="90">手机</th>
-        <th width="130">借款时间</th>
-        <th width="130">还款时间</th>
+        <th width="100">模板内容</th>
+        <th width="100">是否默认模板</th>
         <th width="100">操作</th>
       </tr>
     </thead>
@@ -52,13 +50,17 @@
     <#list list as obj>
       <tr class="text-c">
         <td>${obj.id}</td>
-        <td>${obj.name}</td>
-        <td>${obj.phone}</td>
-        <td>${obj.loanTime?string("yyyy-MM-dd")}</td>
-        <td>${obj.repaymentTime?string("yyyy-MM-dd")}</td>
+        <td>${obj.content}</td>
+        <td>
+        	<#if obj.defaultUse==1>
+        		<span class="label label-success radius">是 默 认</span>
+        		<#else>
+	        		<span class="label radius">不是默认</span>
+        	</#if>	
+        	</td>
         <td class="f-14 user-manage">
-        	<a title="编辑" href="javascript:;" onclick="edit('550','320','添加短信用户','/borrower/showEdit',${obj.id})" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
-        	<a title="删除" href="javascript:;" onclick="deleteObj(this,'${obj.name}','/borrower/delete',${obj.id})" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe609;</i></a>
+        	<a title="编辑" href="javascript:;" onclick="edit('550','320','添加用户模板','/content/showEdit',${obj.id})" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
+        	<a title="删除" href="javascript:;" onclick="deleteObj(this,'${obj.id}','/content/delete',${obj.id})" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe609;</i></a>
        	</td>
       </tr>
      </#list>
@@ -109,7 +111,7 @@ function edit(w,h,title,url,id){
 }
 
 function deleteObj(obj,o,u,id){
-	layer.confirm("确认要删除"+o+"吗？",function(index){
+	layer.confirm("确认要删除编号为1"+o+"的模板吗？",function(index){
 		$.ajax({
 			type: 'POST',
 			url: u,

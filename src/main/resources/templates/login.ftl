@@ -10,8 +10,8 @@
 <!--[if IE 6]>
 <script type="text/javascript" src="/H-ui/lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('.pngfix,.icon');</script>
-<![endif]--> 
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<![endif]-->
+<script src="/H-ui/lib/jquery/1.9.1/jquery.min.js"></script>
 <link  rel="stylesheet" type="text/css" href="/H-ui/static/h-ui/css/H-ui.min.css">
 <script type="text/javascript" src="/H-ui/static/h-ui/js/H-ui.js"></script>
 <script type="text/javascript" src="/H-ui/lib/layer/2.4/layer.js"></script>
@@ -36,6 +36,9 @@
 		</div>
 	</div>
 	<script type="text/javascript">
+		if(window.top.location!=location){
+			window.top.location = location;
+		}
 		function submitForm(){
 			var username = $("input[name=username]").val().trim();
 			var password = $("input[name=password]").val().trim();
