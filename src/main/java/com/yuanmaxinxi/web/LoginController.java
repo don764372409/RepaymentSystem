@@ -9,6 +9,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.tomcat.util.buf.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,7 @@ import com.yuanmaxinxi.domain.user.User;
 import com.yuanmaxinxi.dto.ResultDTO;
 import com.yuanmaxinxi.service.user.UserService;
 import com.yuanmaxinxi.util.CodeUtil;
+import com.yuanmaxinxi.util.StringUtil;
 
 @Controller
 @RequestMapping("/login")
@@ -45,6 +47,10 @@ public class LoginController {
 		ResultDTO dto;
 		try {
 			String sysCode = (String)session.getAttribute("code");
+			if (!StringUtil.isNotNullAndEmpty(sysCode)) {
+				dto = ResultDTO.getIntance(false,"请刷新页面.");
+				return dto;
+			}
 			if (!sysCode.equalsIgnoreCase(code)) {
 				dto = ResultDTO.getIntance(false,"验证码输入错误.");
 				return dto;
