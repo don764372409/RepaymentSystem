@@ -4,8 +4,11 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.derby.tools.sysinfo;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -16,30 +19,36 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
 public class MailUtil {
+	private static String sendMessageUrl = "http://120.77.14.55:8888/v2sms.aspx";
 	private static SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-	public static void send() {
-		String url = "http://120.77.14.55:8888/v2sms.aspx";
-		String content="";
-		String phones="15181950314,15215097887";
+	private static String userId = "8814";//企业ID
+	private static String username = "jmwl";//账号
+	private static String password = "jmwl123";//密码
+	private static String signName = "【科技】 ";//签名
+	
+	public static Map<String,Object> send(String phones,String content) {
+		Map<String,Object> map = new HashMap<>();
 		//创建客户端
 		CloseableHttpClient client = HttpClients.createDefault();
 		 CloseableHttpResponse response = null;
 	        String resultString = "";
 	        try {
 	            // 创建Http Post请求
-	            HttpPost httpPost = new HttpPost(url);
+	            HttpPost httpPost = new HttpPost(sendMessageUrl);
 	            // 创建参数列表
                 List<NameValuePair> paramList = new ArrayList<>();
                 paramList.add(new BasicNameValuePair("action","send"));
-                paramList.add(new BasicNameValuePair("userid","12"));
+                paramList.add(new BasicNameValuePair("userid","8814"));
                 Date date = new Date();
                 String timestamp = sdf.format(date);
                 paramList.add(new BasicNameValuePair("timestamp",timestamp));
-                String sign = "testmima"+timestamp;
+                String sign = username+password+timestamp;
                 sign = MD5Util.encode(sign);
                 paramList.add(new BasicNameValuePair("sign",sign));
                 paramList.add(new BasicNameValuePair("mobile",phones));
-                paramList.add(new BasicNameValuePair("content","你好吗?"));
+                String sendContent = new String((signName+content).getBytes(),"utf-8");
+                System.err.println(sendContent);
+                paramList.add(new BasicNameValuePair("content",sendContent));
                 paramList.add(new BasicNameValuePair("sendTime",""));
                 paramList.add(new BasicNameValuePair("extno",""));
 //                // 模拟表单
@@ -58,9 +67,9 @@ public class MailUtil {
 	                e.printStackTrace();
 	            }
 	        }
-
+	        return null;
 	}
 	public static void main(String[] args) {
-		send();
+		send("15181950.14,18040395687","你好吗？");
 	}
 }
