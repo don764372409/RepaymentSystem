@@ -81,16 +81,6 @@
 			</ul>
 		</dd>
 	</dl>
-		<dl id="menu-tongji">
-			<dt><i class="Hui-iconfont">&#xe61a;</i> 接口统计管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-			<dd>
-				<ul>
-					<li><a data-href="charts-1.html" data-title="折线图" href="javascript:void(0)">已发送短信记录</a></li>
-					<li><a data-href="charts-2.html" data-title="时间轴折线图" href="javascript:void(0)">接口余额</a></li>
-					<li><a data-href="charts-3.html" data-title="区域图" href="javascript:void(0)">接口账号管理</a></li>
-			</ul>
-		</dd>
-	</dl>
 </div>
 </aside>
 <div class="dislpayArrow hidden-xs"><a class="pngfix" href="javascript:void(0);" onClick="displaynavbar(this)"></a></div>

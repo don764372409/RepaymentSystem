@@ -23,7 +23,7 @@ public class SendPhoneMessageTask {
 	private SmsService smsService;
 	@Autowired
 	private ContentService contentService;
-	@Scheduled(cron="0 25 15 ? * *")
+	@Scheduled(cron="0 00 10 ? * *")
 	public void autoSendPhoneMessage() {
 		Content content = contentService.selectDefaultContent();
 		int sysDate = Integer.parseInt(sdf.format(new Date()));
