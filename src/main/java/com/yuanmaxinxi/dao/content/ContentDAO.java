@@ -19,4 +19,6 @@ public interface ContentDAO{
 	 * 将所有数据的defaultUse字段设置为0  不为默认模板
 	 */
 	void updateDefaultUserTo0();
+
+	Content selectDefaultContent();
 }

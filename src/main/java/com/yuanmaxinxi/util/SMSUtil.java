@@ -6,7 +6,7 @@ import java.security.*;
 import java.text.*;
 import java.util.*;
 
-public class SMS {
+public class SMSUtil {
 	static String id = "8814"; // 帐号的ID
 	static String ac = "jmwl"; // 帐号
 	static String pw = "jmwl123"; // 帐号的密码
@@ -45,10 +45,10 @@ public class SMS {
 		}
 		in.close();
 		hp.disconnect();
-		return XmlUtil.xmlToMap(result);
+		return XmlUtil.xmlToMap1(result);
 	}
 
-	public static void checkYUE() throws Exception { // 查询余额的接口调用
+	public static Map<String,String> checkYUE() throws Exception { // 查询余额的接口调用
 		String urlString = xml + "/v2sms.aspx?";
 		String send = "action=overage&userid=" + id + "&timestamp=" + dateStr + "&sign=" + sign;
 		URL url = new URL(urlString);
@@ -61,14 +61,14 @@ public class SMS {
 		out.write(b);
 		out.close();
 		BufferedReader in = new BufferedReader(new InputStreamReader(hp.getInputStream(), "utf-8"));
+		String result="";
 		String inputLine;
-		System.out.println("余额查询：");
 		while ((inputLine = in.readLine()) != null) {
-			System.out.println(inputLine);
+			result+=inputLine;
 		}
 		in.close();
 		hp.disconnect();
-		System.out.println("");
+		return XmlUtil.xmlToMap2(result);
 	}
 	public final static String MD5Encode(String s) {
 		try {

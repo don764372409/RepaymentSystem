@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuanmaxinxi.dao.sms.SmsDAO">
+	<resultMap type="Sms" id="SmsResultMap">
+		<id column="id" property="id"/>
+		<result column="phone" property="phone"/>
+		<result column="sendTime" property="sendTime"/>
+		<result column="status" property="status"/>
+		<result column="brrId" property="brrId"/>
+	</resultMap>
+	<insert id="insert" parameterType="Sms">
+		insert into t_sms(phone,sendTime,status,brrId) values(#{phone},#{sendTime},#{status},#{brrId})
+	</insert>
+	<update id="update" parameterType="Sms">
+		update t_sms set phone=#{phone},sendTime=#{sendTime},status=#{status},brrId=#{brrId} where id=#{id}
+	</update>
+	<delete id="delete" parameterType="Long">
+		delete from t_sms where id=#{id}
+	</delete>
+	<select id="selectOneById" parameterType="Long" resultMap="SmsResultMap">
+		select * from t_sms where id=#{id}
+	</select>
+	<select id="selectAll" resultMap="SmsResultMap">
+		select * from t_sms
+	</select>
+</mapper>

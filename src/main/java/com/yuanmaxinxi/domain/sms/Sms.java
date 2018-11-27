@@ -8,7 +8,6 @@ public class Sms {
 	private Date sendTime;
 	private int status;
 	private Long brrId;//借款人外键
-	
 	public Long getBrrId() {
 		return brrId;
 	}

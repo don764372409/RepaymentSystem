@@ -99,7 +99,7 @@
 		<div class="Hui-tabNav-wp">
 			<ul id="min_title_list" class="acrossTab cl">
 				<li class="active">
-					<span title="我的办公" data-href="">我的办公</span>
+					<span title="我的办公" data-href="/sms/list">短信记录</span>
 					<em></em></li>
 		</ul>
 	</div>
@@ -107,7 +107,7 @@
 	<div id="iframe_box" class="Hui-article">
 		<div class="show_iframe">
 			<div style="display:none" class="loading"></div>
-			<iframe scrolling="yes" frameborder="0" src=""></iframe>
+			<iframe scrolling="yes" frameborder="0" src="/sms/list"></iframe>
 	</div>
 </div>
 </section>

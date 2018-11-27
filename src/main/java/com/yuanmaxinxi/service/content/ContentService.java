@@ -68,4 +68,9 @@ public class ContentService{
 		return contentDAO.selectAll();
 	}
 
+
+	public Content selectDefaultContent() {
+		return contentDAO.selectDefaultContent();
+	}
+
 }
