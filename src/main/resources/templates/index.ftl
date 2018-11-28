@@ -22,6 +22,24 @@
 <script>DD_belatedPNG.fix('*');</script>
 <![endif]-->
 <title>短信接口管理平台</title>
+<style type="text/css">
+@media (max-width: 767px){
+	#Hui-userbar{
+		display: block !important;
+		background: #000;
+		width:100%;
+		height:45px;
+		left:0;
+		z-index:-1;
+	}
+	.navbar-nav>ul>li.dropDown>.dropDown_A>.Hui-iconfont{
+		display: inline-block;
+	}
+	#Hui-userbar{
+		display:block !important; 
+	}
+}
+</style>
 </head>
 <body>
 <header class="navbar-wrapper">
@@ -43,8 +61,9 @@
 				<li class="dropDown dropDown_hover">
 					<a href="#" class="dropDown_A">${loginUser.username}<i class="Hui-iconfont">&#xe6d5;</i></a>
 					<ul class="dropDown-menu menu radius box-shadow">
-						<li><a href="javascript:;" onClick="myselfinfo()">密码修改</a></li>
-						<li><a href="#">退出</a></li>
+						<li><a href="javascript:;" onClick="editUser('密码修改','/user/showPassword')">密码修改</a></li>
+						<li><a href="javascript:;" onClick="editUser('手机号码修改','/user/showPhone')">手机修改</a></li>
+						<li><a href="/login/logout">退出</a></li>
 				</ul>
 			</li>
 				<li id="Hui-skin" class="dropDown right dropDown_hover"> <a href="javascript:;" class="dropDown_A" title="换肤"><i class="Hui-iconfont" style="font-size:18px">&#xe62a;</i></a>
@@ -89,7 +108,7 @@
 		<div class="Hui-tabNav-wp">
 			<ul id="min_title_list" class="acrossTab cl">
 				<li class="active">
-					<span title="我的办公" data-href="/sms/list">短信记录</span>
+					<span title="我的办公" data-href="/sms/list">首页</span>
 					<em></em></li>
 		</ul>
 	</div>
@@ -130,7 +149,29 @@ function content_add(title,url){
 	});
 	layer.full(index);
 }
-
+function editUser(title,url){
+	var index = layer.open({
+		type: 2,
+		title: title,
+		content: url
+	});
+	layer.full(index);
+}
+$(function(){
+	if($("body").width()<767){
+		$(".dropDown_A").click(function(){
+			var liEl = $(this).parent();
+			if(liEl.hasClass("open")){
+				liEl.removeClass("open");
+				$(".dropDown>.dropDown-menu").show();
+			}else{
+				liEl.addClass("open");
+				$(".dropDown>.dropDown-menu").hide();
+			}
+			$("#Hui-skin").hide();
+		})
+	}
+})
 
 </script> 
 

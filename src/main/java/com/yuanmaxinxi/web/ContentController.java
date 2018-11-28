@@ -34,6 +34,10 @@ public class ContentController {
 		model.addAttribute("obj", obj);
 		return "content/edit";
 	}
+	@RequestMapping("/selectOne")
+	public @ResponseBody Content selectOne(Long id) {
+		return contentService.selectOneById(id);
+	}
 	@RequestMapping("/add")
 	public @ResponseBody ResultDTO add(Content obj) {
 		ResultDTO dto;

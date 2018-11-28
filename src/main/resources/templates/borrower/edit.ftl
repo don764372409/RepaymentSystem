@@ -58,7 +58,7 @@
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-3 col-sm-3">还款时间：</label>
-			<div class="formControls col-xs-8 col-sm-8">
+			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" placeholder="请输入还款时间" onfocus="WdatePicker()" name="repaymentTime" value="${obj.repaymentTime?string('yyyy-MM-dd')}" class="input-text Wdate">	
 			</div>
 		</div>
@@ -98,8 +98,8 @@ $(function(){
 					layer.msg(data.msg,{icon:1,time:1000});
 					if(data.result){
 						parent.$('.btn-refresh').click();
-						var index = parent.layer.getFrameIndex(window.name);
-						parent.layer.close(index);
+// 						var index = parent.layer.getFrameIndex(window.name);
+// 						parent.layer.close(index);
 					}
 				},
                 error: function(XmlHttpRequest, textStatus, errorThrown){

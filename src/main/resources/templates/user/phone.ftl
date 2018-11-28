@@ -32,28 +32,16 @@
 <script>DD_belatedPNG.fix('*');</script>
 <![endif]-->
 <!--/meta 作为公共模版分离出去-->
-<title>添加短信用户</title>
+<title>修改密码</title>
 </head>
 <body>
 <article class="page-container form-horizontal">
 	<form action="" method="post" class="form form-horizontal" id="form-member-add">
+		<input name="id" value="${loginUser.id}" type="hidden">
 		<div class="row cl">
-			<label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>模板内容：</label>
+			<label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>手机号码：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<textarea name="content" cols="" rows="" class="textarea"  placeholder="请输入短信模板内容"></textarea>
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>是否默认：</label>
-			<div class="formControls col-xs-7 col-sm-9 skin-minimal">
-				<div class="radio-box">
-					<input name="defaultUse" value="1" type="radio" id="defaultUse-1">
-					<label for="defaultUse-1">是</label>
-				</div>
-				<div class="radio-box">
-					<input type="radio" id="defaultUse-2" value="0" name="defaultUse" checked>
-					<label for="defaultUse-2">不是</label>
-				</div>
+				<input type="text" class="input-text" value="${loginUser.phone!}" placeholder="请输入新手机号码" name="phone">
 			</div>
 		</div>
 		<div class="row cl">
@@ -64,12 +52,6 @@
 	</form>
 </article>
 <script type="text/javascript">
-$('.skin-minimal input').iCheck({
-	checkboxClass: 'icheckbox-blue',
-	radioClass: 'iradio-blue',
-	increaseArea: '20%'
-});
-
 $(function(){
 	$("#form-member-add").validate({
 		rules:{
@@ -86,7 +68,7 @@ $(function(){
 		submitHandler:function(form){
 			$(form).ajaxSubmit({
 				type: 'post',
-				url: "/content/add" ,
+				url: "/user/updatePhone" ,
 				success: function(data){
 					layer.msg(data.msg,{icon:1,time:1000});
 					if(data.result){

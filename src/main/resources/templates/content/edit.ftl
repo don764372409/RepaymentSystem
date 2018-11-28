@@ -103,8 +103,8 @@ $(function(){
 					layer.msg(data.msg,{icon:1,time:1000});
 					if(data.result){
 						parent.$('.btn-refresh').click();
-						var index = parent.layer.getFrameIndex(window.name);
-						parent.layer.close(index);
+// 						var index = parent.layer.getFrameIndex(window.name);
+// 						parent.layer.close(index);
 					}
 				},
                 error: function(XmlHttpRequest, textStatus, errorThrown){

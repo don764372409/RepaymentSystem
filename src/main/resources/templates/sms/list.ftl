@@ -20,9 +20,17 @@
 <script>DD_belatedPNG.fix('*');</script>
 <![endif]-->
 <title>用户管理</title>
+<style type="text/css">
+	@media (max-width: 767px){
+		.yueInfo span{
+			display: block;
+		}
+	}
+</style>
 </head>
 <body>
 <div class="pd-20">
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <a class="btn btn-success radius r btn-refresh" style="line-height:1.6em;margin-top:3px" onclick="location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <!--   <div class="text-c"> 短信发送时间： -->
 <!--     <input type="text" onfocus="WdatePicker()" id="datemin" class="input-text Wdate" style="width:120px;"> -->
 <!--     - -->
@@ -31,10 +39,10 @@
 
 <!--   </div> -->
   <div class="cl pd-5 bg-1 bk-gray mt-20">
-  	<span class="l">
-  		支付方式：${obj.payinfo}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  		余额:${obj.overage}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  		总点数：${obj.sendTotal}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  	<span class="l yueInfo">
+  		<span>支付方式：${obj.payinfo}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+  		<span>余额:${obj.overage}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+  		<span>总点数：${obj.sendTotal}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
   		<a href="javascript:;" onclick="window.location.href=location.href;" class="btn btn-primary radius"><i class="icon-plus"></i> 刷新余额</a>
   	</span>
 <!--     <span class="l"><a href="javascript:;" onclick="deleteObj()" class="btn btn-danger radius"><i class="icon-trash"></i> 删除用户</a> -->
@@ -46,7 +54,7 @@
     <thead>
       <tr class="text-c">
         <th width="80">ID</th>
-        <th width="100">手机号码</th>
+        <th width="100">ID|手机号码</th>
         <th width="100">发送时间</th>
         <th width="100">发送状态</th>
       </tr>

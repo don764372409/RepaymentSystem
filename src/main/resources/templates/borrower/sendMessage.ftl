@@ -37,28 +37,35 @@
 <body>
 <article class="page-container">
 	<form action="" method="post" class="form form-horizontal" id="form-member-add">
+		<input name="id" type="hidden" value="${obj.id}">
 		<div class="row cl">
 			<label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>姓名：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="请输入姓名" name="name">
+				<input type="text" class="input-text" value="${obj.name}" placeholder="请输入姓名" name="name">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>手机：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="请输入手机" name="phone">
+				<input type="text" class="input-text" value="${obj.phone}" placeholder="请输入手机" name="phone">
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>借款时间：</label>
+			<label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>选择模板：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" placeholder="请输入借款时间" onfocus="WdatePicker()" name="loanTime" class="input-text Wdate">	
+				<span class="select-box">
+				  <select class="select" id="contentSelect" name="contentId" size="1" onchange="fullTextArea(this)">
+				  	<#list list as content>
+				    	<option value="${content.id}" selected>${content.content}</option>
+				    </#list>
+				  </select>
+				</span>
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-3 col-sm-3">还款时间：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" placeholder="请输入还款时间" onfocus="WdatePicker()" name="repaymentTime" class="input-text Wdate">	
+				<textarea name="content" cols="" rows="" class="textarea"  placeholder="请选择短信模板内容"></textarea>
 			</div>
 		</div>
 		<div class="row cl">
@@ -69,6 +76,15 @@
 	</form>
 </article>
 <script type="text/javascript">
+function getContentById(id){
+	$.post("/content/selectOne",{"id":id},function(data){
+		$("textarea[name=content]").html(data.content);
+	})
+}
+function fullTextArea(el){
+	var id = $(el).val();
+	getContentById(id);
+}
 $(function(){
 	$("#form-member-add").validate({
 		rules:{
@@ -79,34 +95,58 @@ $(function(){
 				required:true,
 				isMobile:true
 			},
-			loanTime:{
+			content:{
 				required:true
 			},
-			repaymentTime:{
+			contentId:{
 				required:true
 			},
+			
 		},
 		onkeyup:false,
 		focusCleanup:true,
 		success:"valid",
 		submitHandler:function(form){
-			$(form).ajaxSubmit({
-				type: 'post',
-				url: "/borrower/add" ,
-				success: function(data){
-					layer.msg(data.msg,{icon:1,time:1000});
-					if(data.result){
-						parent.$('.btn-refresh').click();
-// 						var index = parent.layer.getFrameIndex(window.name);
-// 						parent.layer.close(index);
+			layer.confirm("模板内容是否保存为新的模板?",{btn:["保存","不保存"]},function(){
+				$(form).ajaxSubmit({
+					type: 'post',
+					data:{"isSave":"yes"},
+					url: "/borrower/sendMessage" ,
+					success: function(data){
+						layer.msg(data.msg,{icon:1,time:1000});
+						if(data.result){
+							parent.$('.btn-refresh').click();
+							var index = parent.layer.getFrameIndex(window.name);
+							parent.layer.close(index);
+						}
+					},
+	                error: function(XmlHttpRequest, textStatus, errorThrown){
+						layer.msg('网络异常,请刷新重试!',{icon:2,time:1000});
 					}
-				},
-                error: function(XmlHttpRequest, textStatus, errorThrown){
-					layer.msg('网络异常,请刷新重试!',{icon:2,time:1000});
-				}
+				});
+			},function(){
+				$(form).ajaxSubmit({
+					type: 'post',
+					data:{"isSave":"no"},
+					url: "/borrower/sendMessage" ,
+					success: function(data){
+						layer.msg(data.msg,{icon:1,time:1000});
+						if(data.result){
+							parent.$('.btn-refresh').click();
+							var index = parent.layer.getFrameIndex(window.name);
+							parent.layer.close(index);
+						}
+					},
+	                error: function(XmlHttpRequest, textStatus, errorThrown){
+						layer.msg('网络异常,请刷新重试!',{icon:2,time:1000});
+					}
+				});
 			});
 		}
 	});
+	//页面加载完成  执行一次 填充多行文本框
+	var id = $("#contentSelect").val();
+	getContentById(id);
 });
 </script> 
 <!--/请在上方写此页面业务相关的脚本-->

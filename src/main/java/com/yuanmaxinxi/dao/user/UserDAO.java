@@ -7,9 +7,6 @@ import java.util.List;
 @Repository
 public interface UserDAO{
 	int insert(User obj);
-
-	int update(User obj);
-
 	int delete(Long id);
 
 	User selectOneById(Long id);
@@ -20,5 +17,6 @@ public interface UserDAO{
 
 	int updatePassword(User loginUser);
 
+	int updatePhone(User obj);
 
 }

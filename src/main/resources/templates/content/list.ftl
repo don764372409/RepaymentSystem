@@ -33,7 +33,7 @@
 <!--   </div> -->
   <div class="cl pd-5 bg-1 bk-gray mt-20">
 <!--     <span class="l"><a href="javascript:;" onclick="deleteObj()" class="btn btn-danger radius"><i class="icon-trash"></i> 删除用户</a> -->
-    <a href="javascript:;" onclick="addObj('550','320','添加短信模板','/content/showAdd')" class="btn btn-primary radius"><i class="icon-plus"></i> 添加短信模板</a></span>
+    <a href="javascript:;" onclick="addObj('添加短信模板','/content/showAdd')" class="btn btn-primary radius"><i class="icon-plus"></i> 添加短信模板</a></span>
     <span class="r">共有数据：<strong>${list?size}</strong> 条</span>
   </div>
   <div class="mt-20"></div>
@@ -59,7 +59,7 @@
         	</#if>	
         	</td>
         <td class="f-14 user-manage">
-        	<a title="编辑" href="javascript:;" onclick="edit('550','320','添加用户模板','/content/showEdit',${obj.id})" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
+        	<a title="编辑" href="javascript:;" onclick="edit('添加用户模板','/content/showEdit',${obj.id})" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
         	<a title="删除" href="javascript:;" onclick="deleteObj(this,'${obj.id}','/content/delete',${obj.id})" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe609;</i></a>
        	</td>
       </tr>
@@ -101,13 +101,23 @@ $('.table-sort').dataTable({
 // 	  {"orderable":false,"aTargets":[0,4,5]}// 制定列不参与排序
 	]
 });
-function addObj(w,h,title,url){
-	layer_show(title,url,w,h);
+function addObj(title,url){
+	var index = layer.open({
+		type: 2,
+		title: title,
+		content: url
+	});
 	//打开全屏
-// 	layer.full(index);
+	layer.full(index);
 }
-function edit(w,h,title,url,id){
-	layer_show(title,url+"?id="+id,w,h);
+function edit(title,url,id){
+	var index = layer.open({
+		type: 2,
+		title: title,
+		content: url+"?id="+id
+	});
+	//打开全屏
+	layer.full(index);
 }
 
 function deleteObj(obj,o,u,id){

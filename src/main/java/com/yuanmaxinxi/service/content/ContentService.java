@@ -49,6 +49,10 @@ public class ContentService{
 
 	@Transactional
 	public void delete(Long id){
+		Content content = selectOneById(id);
+		if (content.getDefaultUse()==1) {
+			throw new RuntimeException("当前模板是默认模板,不能删除.");
+		}
 		if (id==null||id<=0) {
 			throw new RuntimeException("非法访问.");
 		}

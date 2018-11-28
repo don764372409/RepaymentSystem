@@ -8,15 +8,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.yuanmaxinxi.dao.content.ContentDAO;
 import com.yuanmaxinxi.dao.sms.SmsDAO;
+import com.yuanmaxinxi.dao.user.UserDAO;
 import com.yuanmaxinxi.domain.borrower.Borrower;
 import com.yuanmaxinxi.domain.content.Content;
 import com.yuanmaxinxi.domain.sms.Sms;
+import com.yuanmaxinxi.domain.user.User;
 import com.yuanmaxinxi.util.SMSUtil;
 @Service
 public class SmsService{
 	@Autowired
 	private SmsDAO smsDAO;
+	@Autowired
+	private ContentDAO contentDAO;
+	@Autowired
+	private UserDAO userDAO;
 	@Transactional
 	public int insert(Sms obj){
 		return smsDAO.insert(obj);
@@ -67,7 +74,39 @@ public class SmsService{
 			Map<String, String> map = SMSUtil.sendmsg(brr.getPhone(), content.getContent());
 			Sms sms = new Sms();
 			sms.setBrrId(brr.getId());
-			sms.setPhone(brr.getPhone());
+			sms.setPhone("借款人ID："+brr.getId()+"|借款人手机号:"+brr.getPhone());
+			sms.setSendTime(new Date());
+			int status = 0;//发送成功状态 0-失败  1-成功
+			if (map.get("returnstatus").contains("Success")) {
+				status = 1;
+			}
+			//发送失败  给管理员发送消息
+			if (status==0) {
+				User user = userDAO.selectOneByUsername("admin");
+				//设置管理的ID为0
+				Borrower b = new Borrower();
+				b.setId(0L);
+				b.setPhone(user.getPhone());
+				Content c = new Content();
+				c.setContent("提醒短信发送失败!手机号码:"+sms.getPhone()+"|姓名:"+brr.getName()+"|当前短信余额:"+map.get("remainpoint")+"。请前往平台进行手动发送.");
+				sendErrorMessage(b,c);
+			}
+			sms.setStatus(status);
+			int i = insert(sms);
+			if (i!=1) {
+				throw new RuntimeException("添加发送记录失败");
+			}
+		} catch (Exception e) {
+			throw new RuntimeException(e.getMessage());
+		}
+	}
+	@Transactional
+	public void sendErrorMessage(Borrower brr, Content content) {
+		try {
+			Map<String, String> map = SMSUtil.sendmsg(brr.getPhone(), content.getContent());
+			Sms sms = new Sms();
+			sms.setBrrId(brr.getId());
+			sms.setPhone("管理员:"+brr.getPhone());
 			sms.setSendTime(new Date());
 			int status = 0;//发送成功状态 0-失败  1-成功
 			if (map.get("returnstatus").contains("Success")) {
@@ -81,6 +120,26 @@ public class SmsService{
 		} catch (Exception e) {
 			throw new RuntimeException(e.getMessage());
 		}
+	}
+	/**
+	 * 点击短信列表中的发送短信
+	 * @param borr
+	 * @param content
+	 * @param isSave
+	 */
+	@Transactional
+	public void sendMessage(Borrower borr, String content, String isSave) {
+		Content ct = new Content();
+		ct.setContent(content);
+		//要保存新的模板
+		if ("yes".equals(isSave)) {
+			ct.setDefaultUse(0);
+			int i = contentDAO.insert(ct);
+			if (i!=1) {
+				throw new RuntimeException("添加新模板失败");
+			}
+		}
+		send(borr, ct);
 	}
 
 }

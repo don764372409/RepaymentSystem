@@ -10,7 +10,7 @@ public class SMSUtil {
 	static String id = "8814"; // 帐号的ID
 	static String ac = "jmwl"; // 帐号
 	static String pw = "jmwl123"; // 帐号的密码
-	static String signName = "【掌骏传媒】你好"; // 需要下发的短信内容
+	static String signName = "【掌骏传媒】"; // 需要下发的短信内容
 	static String xml = "http://sms.izjun.cn";
 
 	static Date date = new Date();

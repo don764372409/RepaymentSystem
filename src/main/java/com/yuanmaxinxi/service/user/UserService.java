@@ -17,8 +17,14 @@ public class UserService{
 
 
 	@Transactional
-	public int update(User obj){
-		return userDAO.update(obj);
+	public void updatePhone(User obj){
+		if (obj.getId()==null||obj.getId()<=0) {
+			throw new RuntimeException("非法访问");
+		}
+		int i = userDAO.updatePhone(obj);
+		if (i!=1) {
+			throw new RuntimeException("密码修改失败!");
+		}
 	}
 
 

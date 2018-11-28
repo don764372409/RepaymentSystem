@@ -6,12 +6,16 @@
 		<id column="id" property="id"/>
 		<result column="username" property="username"/>
 		<result column="password" property="password"/>
+		<result column="phone" property="phone"/>
 	</resultMap>
 	<insert id="insert" parameterType="User">
-		insert into t_user(username,password) values(#{username},#{password})
+		insert into t_user(username,password,phone) values(#{username},#{password},#{phone})
 	</insert>
-	<update id="update" parameterType="User">
-		update t_user set username=#{username},password=#{password} where id=#{id}
+	<update id="updatePassword" parameterType="User">
+		update t_user set password=#{password} where id=#{id}
+	</update>
+	<update id="updatePhone" parameterType="User">
+		update t_user set phone=#{phone} where id=#{id}
 	</update>
 	<delete id="delete" parameterType="Long">
 		delete from t_user where id=#{id}
