@@ -57,19 +57,19 @@
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>紧急电话：</label>
+			<label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>紧联人电话：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="${obj.phone2}" placeholder="请输入手机" name="phone2">
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>借款结束时间：</label>
+			<label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>借款起始时间：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" placeholder="请输入借款时间" onfocus="WdatePicker()" name="loanTime" value="${obj.loanTime?string('yyyy-MM-dd')}" class="input-text Wdate">	
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-3 col-sm-3">还款时间：</label>
+			<label class="form-label col-xs-3 col-sm-3">借款截止时间：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" placeholder="请输入还款时间" onfocus="WdatePicker()" name="repaymentTime" value="${obj.repaymentTime?string('yyyy-MM-dd')}" class="input-text Wdate">	
 			</div>

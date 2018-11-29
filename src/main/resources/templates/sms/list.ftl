@@ -53,10 +53,10 @@
   <table class="table table-border table-bordered table-hover table-bg table-sort">
     <thead>
       <tr class="text-c">
-        <th width="80">ID</th>
-        <th width="100">ID|手机号码</th>
-        <th width="100">发送时间</th>
-        <th width="100">发送状态</th>
+        <th width="40">ID</th>
+        <th width="150">ID|手机号码</th>
+        <th width="200">发送内容</th>
+        <th width="40">发送状态</th>
       </tr>
     </thead>
     <tbody>
@@ -64,7 +64,7 @@
       <tr class="text-c">
         <td>${obj.id}</td>
         <td>${obj.phone}</td>
-        <td>${obj.sendTime?datetime}</td>
+        <td>${obj.content}</td>
         <td>
         	<#if obj.status==1>
         		<span class="label label-success radius">发送成功</span>

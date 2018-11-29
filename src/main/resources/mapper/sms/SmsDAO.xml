@@ -8,9 +8,10 @@
 		<result column="sendTime" property="sendTime"/>
 		<result column="status" property="status"/>
 		<result column="brrId" property="brrId"/>
+		<result column="content" property="content"/>
 	</resultMap>
 	<insert id="insert" parameterType="Sms">
-		insert into t_sms(phone,sendTime,status,brrId) values(#{phone},#{sendTime},#{status},#{brrId})
+		insert into t_sms(phone,sendTime,status,brrId,content) values(#{phone},#{sendTime},#{status},#{brrId},#{content})
 	</insert>
 	<update id="update" parameterType="Sms">
 		update t_sms set phone=#{phone},sendTime=#{sendTime},status=#{status},brrId=#{brrId} where id=#{id}

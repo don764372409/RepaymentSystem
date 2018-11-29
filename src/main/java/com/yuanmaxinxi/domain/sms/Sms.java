@@ -8,6 +8,14 @@ public class Sms {
 	private Date sendTime;
 	private int status;
 	private Long brrId;//借款人外键
+	private String content;//短信发送内容
+	
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
 	public Long getBrrId() {
 		return brrId;
 	}

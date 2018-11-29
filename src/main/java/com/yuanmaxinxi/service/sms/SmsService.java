@@ -76,6 +76,7 @@ public class SmsService{
 			sms.setBrrId(brr.getId());
 			sms.setPhone("借款人ID："+brr.getId()+"|借款人手机号:"+brr.getPhone());
 			sms.setSendTime(new Date());
+			sms.setContent(content.getContent());
 			int status = 0;//发送成功状态 0-失败  1-成功
 			if (map.get("returnstatus").contains("Success")) {
 				status = 1;
@@ -108,6 +109,7 @@ public class SmsService{
 			sms.setBrrId(brr.getId());
 			sms.setPhone("管理员:"+brr.getPhone());
 			sms.setSendTime(new Date());
+			sms.setContent(content.getContent());
 			int status = 0;//发送成功状态 0-失败  1-成功
 			if (map.get("returnstatus").contains("Success")) {
 				status = 1;
