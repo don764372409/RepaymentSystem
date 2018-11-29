@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.yuanmaxinxi.dao.borrower.BorrowerDAO;
 import com.yuanmaxinxi.dao.content.ContentDAO;
 import com.yuanmaxinxi.dao.sms.SmsDAO;
 import com.yuanmaxinxi.dao.user.UserDAO;
@@ -24,6 +25,8 @@ public class SmsService{
 	private ContentDAO contentDAO;
 	@Autowired
 	private UserDAO userDAO;
+	@Autowired
+	private BorrowerDAO borrowerDAO;
 	@Transactional
 	public int insert(Sms obj){
 		return smsDAO.insert(obj);
@@ -48,7 +51,14 @@ public class SmsService{
 
 
 	public List<Sms> selectAll(){
-		return smsDAO.selectAll();
+		List<Sms> list = smsDAO.selectAll();
+		for (Sms sms : list) {
+			if (sms.getBrrId()!=null||sms.getBrrId()>0) {
+				Borrower brr = borrowerDAO.selectOneById(sms.getBrrId());
+				sms.setBorrower(brr);
+			}
+		}
+		return list;
 	}
 	/**
 	 * 查询短信余额
@@ -74,42 +84,37 @@ public class SmsService{
 			Map<String, String> map = SMSUtil.sendmsg(brr.getPhone(), content.getContent());
 			Sms sms = new Sms();
 			sms.setBrrId(brr.getId());
-			sms.setPhone("借款人ID："+brr.getId()+"|借款人手机号:"+brr.getPhone());
+			sms.setPhone(brr.getPhone());
 			sms.setSendTime(new Date());
 			sms.setContent(content.getContent());
 			int status = 0;//发送成功状态 0-失败  1-成功
 			if (map.get("returnstatus").contains("Success")) {
 				status = 1;
 			}
-			//发送失败  给管理员发送消息
-			if (status==0) {
-				User user = userDAO.selectOneByUsername("admin");
-				//设置管理的ID为0
-				Borrower b = new Borrower();
-				b.setId(0L);
-				b.setPhone(user.getPhone());
-				Content c = new Content();
-				c.setContent("借款人姓名："+brr.getName()+" 手机号码:"+sms.getPhone()+" 紧急联系人：姓名："+brr.getName2()+" 电话："+brr.getPhone2()+" 短信未发送成功.");
-				sendErrorMessage(b,c);
-			}
 			sms.setStatus(status);
 			int i = insert(sms);
 			if (i!=1) {
 				throw new RuntimeException("添加发送记录失败");
+			}
+			//发送失败  给管理员发送消息
+			if (status==0) {
+				User user = userDAO.selectOneByUsername("admin");
+				String ct = ("借款人姓名："+brr.getName()+" 手机号码:"+sms.getPhone()+" 紧急联系人：姓名："+brr.getName2()+" 电话："+brr.getPhone2()+" 短信未发送成功.");
+				sendErrorMessage(ct,user.getPhone());
 			}
 		} catch (Exception e) {
 			throw new RuntimeException(e.getMessage());
 		}
 	}
 	@Transactional
-	public void sendErrorMessage(Borrower brr, Content content) {
+	public void sendErrorMessage(String content,String phone) {
 		try {
-			Map<String, String> map = SMSUtil.sendmsg(brr.getPhone(), content.getContent());
+			Map<String, String> map = SMSUtil.sendmsg(phone, content);
 			Sms sms = new Sms();
-			sms.setBrrId(brr.getId());
-			sms.setPhone("管理员:"+brr.getPhone());
+			sms.setBrrId(0L);
+			sms.setPhone(phone);
 			sms.setSendTime(new Date());
-			sms.setContent(content.getContent());
+			sms.setContent("向管理员发送失败记录短信");
 			int status = 0;//发送成功状态 0-失败  1-成功
 			if (map.get("returnstatus").contains("Success")) {
 				status = 1;
@@ -142,7 +147,7 @@ public class SmsService{
 				throw new RuntimeException("添加新模板失败");
 			}
 		}
-		send(borr, ct);
+		send(borrowerDAO.selectOneById(borr.getId()), ct);
 	}
 
 }

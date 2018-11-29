@@ -2,14 +2,23 @@ package com.yuanmaxinxi.domain.sms;
 
 import java.util.Date;
 
+import com.yuanmaxinxi.domain.borrower.Borrower;
+
 public class Sms {
 	private Long id;
 	private String phone;
 	private Date sendTime;
 	private int status;
 	private Long brrId;//借款人外键
+	private Borrower borrower;
 	private String content;//短信发送内容
 	
+	public Borrower getBorrower() {
+		return borrower;
+	}
+	public void setBorrower(Borrower borrower) {
+		this.borrower = borrower;
+	}
 	public String getContent() {
 		return content;
 	}

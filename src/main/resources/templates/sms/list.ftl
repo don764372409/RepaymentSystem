@@ -53,8 +53,8 @@
   <table class="table table-border table-bordered table-hover table-bg table-sort">
     <thead>
       <tr class="text-c">
-        <th width="40">ID</th>
-        <th width="150">ID|手机号码</th>
+        <th width="40">借款人姓名</th>
+        <th width="150">电话</th>
         <th width="200">发送内容</th>
         <th width="40">发送状态</th>
       </tr>
@@ -62,16 +62,28 @@
     <tbody>
     <#list list as obj>
       <tr class="text-c">
-        <td>${obj.id}</td>
-        <td>${obj.phone}</td>
-        <td>${obj.content}</td>
+        <td>
+        	<#if obj.borrower??>
+        		${obj.borrower.name}
+        		<#else>
+        		管理员
+        	</#if>
+        </td>
+        <td>${obj.phone?if_exists}</td>
+        <td>
+       		 <#if obj.status==1>
+       		 	${obj.content?if_exists}
+        		<#else>
+        		通知管理员，借款人姓名：${obj.borrower.name?if_exists} 电话：${obj.phone?if_exists} 短信未发送成功.
+        	</#if>	
+        </td>
         <td>
         	<#if obj.status==1>
         		<span class="label label-success radius">发送成功</span>
         		<#else>
 	        		<span class="label radius">发送失败</span>
         	</#if>	
-        	</td>
+        </td>
       </tr>
      </#list>
     </tbody>
@@ -104,7 +116,7 @@ $('.table-sort').dataTable({
 	"bFilter": true,//过滤功能
 	"bPaginate": true,//翻页信息
 	"bInfo": false,//数量信息
-	"aaSorting": [[ 0, "desc" ]],//默认第几个排序
+// 	"aaSorting": [[ 0, "desc" ]],//默认第几个排序
 	"bStateSave": true,//状态保存
 	"aoColumnDefs": [
 	  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
