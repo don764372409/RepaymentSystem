@@ -91,16 +91,18 @@ public class SmsService{
 			if (map.get("returnstatus").contains("Success")) {
 				status = 1;
 			}
-			sms.setStatus(status);
-			int i = insert(sms);
-			if (i!=1) {
-				throw new RuntimeException("添加发送记录失败");
-			}
 			//发送失败  给管理员发送消息
 			if (status==0) {
 				User user = userDAO.selectOneByUsername("admin");
 				String ct = ("借款人姓名："+brr.getName()+" 手机号码:"+sms.getPhone()+" 紧急联系人：姓名："+brr.getName2()+" 电话："+brr.getPhone2()+" 短信未发送成功.");
+				System.err.println(ct);
+				System.err.println(user.getPhone());
 				sendErrorMessage(ct,user.getPhone());
+			}
+			sms.setStatus(status);
+			int i = insert(sms);
+			if (i!=1) {
+				throw new RuntimeException("添加发送记录失败");
 			}
 		} catch (Exception e) {
 			throw new RuntimeException(e.getMessage());
