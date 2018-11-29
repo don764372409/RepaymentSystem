@@ -96,10 +96,12 @@
 	</dl>
 	</dl>
 		<dl id="menu-admin">
-			<dt><i class="Hui-iconfont">&#xe62d;</i> 短信用户管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dt><i class="Hui-iconfont">&#xe62d;</i> 用户管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="/borrower/list" data-title="短信用户" href="javascript:void(0)">短信用户</a></li>
+					<li><a data-href="/borrower/list" data-title="短信用户" href="javascript:void(0)">合同联系人</a></li>
+					<li><a data-href="/borrower/list" data-title="短信用户" href="javascript:void(0)">管理员</a></li>
+					<li><a data-href="/borrower/list" data-title="短信用户" href="javascript:void(0)">其他</a></li>
 			</ul>
 		</dd>
 	</dl>
