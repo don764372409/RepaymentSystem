@@ -53,8 +53,9 @@
   <table class="table table-border table-bordered table-hover table-bg table-sort">
     <thead>
       <tr class="text-c">
-        <th width="40">借款人姓名</th>
-        <th width="150">电话</th>
+        <th width="60">联系人类别</th>
+        <th width="60">联系人姓名</th>
+        <th width="100">电话</th>
         <th width="200">发送内容</th>
         <th width="40">发送状态</th>
       </tr>
@@ -64,11 +65,18 @@
       <tr class="text-c">
         <td>
         	<#if obj.borrower??>
-        		${obj.borrower.name}
+        		${obj.borrower.type.name}
         		<#else>
         		管理员
         	</#if>
         </td>
+        <td>
+        	<#if obj.borrower??>
+        		${obj.borrower.name}
+        		<#else>
+        		管理员
+        	</#if>
+       	</td>
         <td>${obj.phone?if_exists}</td>
         <td>
        		 <#if obj.status==1>

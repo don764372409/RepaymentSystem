@@ -22,7 +22,7 @@
 <title>用户管理</title>
 </head>
 <body>
-<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 短信用户管理 <span class="c-gray en">&gt;</span> 短信用户 <a class="btn btn-success radius r btn-refresh" style="line-height:1.6em;margin-top:3px" onclick="location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 用户管理 <span class="c-gray en">&gt;</span> 合同联系人管理 <a class="btn btn-success radius r btn-refresh" style="line-height:1.6em;margin-top:3px" onclick="location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="pd-20">
 <!--   <div class="text-c"> 短信发送时间： -->
 <!--     <input type="text" onfocus="WdatePicker()" id="datemin" class="input-text Wdate" style="width:120px;"> -->
@@ -33,7 +33,7 @@
 <!--   </div> -->
   <div class="cl pd-5 bg-1 bk-gray mt-20">
 <!--     <span class="l"><a href="javascript:;" onclick="deleteObj()" class="btn btn-danger radius"><i class="icon-trash"></i> 删除用户</a> -->
-    <a href="javascript:;" onclick="addObj('添加短信用户','/borrower/showAdd')" class="btn btn-primary radius"><i class="icon-plus"></i> 添加用户</a></span>
+    <a href="javascript:;" onclick="addObj('添加合同联系人','/borrower/showAdd')" class="btn btn-primary radius"><i class="icon-plus"></i> 添加合同联系人</a></span>
     <span class="r">共有数据：<strong>${list?size}</strong> 条</span>
   </div>
   <div class="mt-20"></div>
@@ -41,12 +41,12 @@
     <thead>
       <tr class="text-c">
         <th width="40">ID</th>
-        <th width="100">姓名</th>
+        <th width="100">合同编号</th>
+        <th width="60">姓名</th>
         <th width="90">手机</th>
-        <th width="100">紧急联系人</th>
-        <th width="90">紧联人电话</th>
-        <th width="130">借款起始时间</th>
-        <th width="130">借款截止时间</th>
+        <th width="120">其他联系信息</th>
+        <th width="100">借款起始时间</th>
+        <th width="100">借款截止时间</th>
         <th width="220">操作</th>
       </tr>
     </thead>
@@ -54,14 +54,22 @@
     <#list list as obj>
       <tr class="text-c">
         <td>${obj.id}</td>
+        <td>${obj.number}</td>
         <td>${obj.name}</td>
         <td>${obj.phone}</td>
-        <td>${obj.name2}</td>
-        <td>${obj.phone2}</td>
+        <td>
+        	<#if obj.ps??>
+	        	<#list obj.ps as p>
+	        		${p.type.name}:${p.name} ${p.phone}<br>
+	        		<#else>
+	        		无
+	        	</#list>
+        	</#if>
+        </td>
         <td>${obj.loanTime?string("yyyy-MM-dd")}</td>
         <td>${obj.repaymentTime?string("yyyy-MM-dd")}</td>
         <td class="f-14 user-manage">
-        	<a title="编辑" href="javascript:;" onclick="edit('添加短信用户','/borrower/showEdit',${obj.id})" class="btn btn-primary radius" style="text-decoration:none">修改</a>
+        	<a title="编辑" href="javascript:;" onclick="edit('修改合同联系人','/borrower/showEdit',${obj.id})" class="btn btn-primary radius" style="text-decoration:none">修改</a>
         	<a title="删除" href="javascript:;" onclick="deleteObj(this,'${obj.name}','/borrower/delete',${obj.id})" class="btn btn-primary radius" style="text-decoration:none">删除</a>
         	<a title="送短信" href="javascript:;" onclick="sendMessage('发送短信','/borrower/showSendMessage',${obj.id})" class="btn btn-primary radius" style="text-decoration:none">发送短信</a>
        	</td>

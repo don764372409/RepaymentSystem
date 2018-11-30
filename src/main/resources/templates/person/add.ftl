@@ -32,52 +32,39 @@
 <script>DD_belatedPNG.fix('*');</script>
 <![endif]-->
 <!--/meta 作为公共模版分离出去-->
-<title>添加短信用户</title>
+<title>添加用户</title>
 </head>
 <body>
-<article class="page-container">
+<article class="page-container form-horizontal">
 	<form action="" method="post" class="form form-horizontal" id="form-member-add">
-		<div class="row cl">
-			<label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>合同编号：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="请输入合同编号" name="number">
-			</div>
-		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>姓名：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="hidden" value="1" name="typeId">
-				<input type="text" class="input-text" value="" placeholder="请输入姓名" name="name">
+				<input type="text" class="input-text" value="" placeholder="请输入用户姓名" name="name">
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>手机：</label>
+			<label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>电话：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="请输入手机" name="phone">
+				<input type="text" class="input-text" value="" placeholder="请输入用户电话" name="phone">
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>相关联系人：</label>
+			<label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>类别：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<span class="select-box">
-				  <select class="select" name="pId" multiple="multiple" size="5" onchange="fullTextArea(this)">
-				  	<#list list as p>
-				    	<option value="${p.id}" selected>${p.name}:${p.type.name}</option>
+				  <select class="select" id="contentSelect" name="typeId" size="1">
+				  	<#list list as obj>
+				    	<option value="${obj.id}">${obj.name}</option>
 				    </#list>
 				  </select>
 				</span>
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>借款起始时间：</label>
+			<label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>备注：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" placeholder="请输入借款时间" onfocus="WdatePicker()" name="loanTime" class="input-text Wdate">	
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-3 col-sm-3">借款截止时间：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" placeholder="请输入还款时间" onfocus="WdatePicker()" name="repaymentTime" class="input-text Wdate">	
+				<textarea name="remark" cols="" rows="" class="textarea"  placeholder="请输入当前用户的其他联系电话"></textarea>
 			</div>
 		</div>
 		<div class="row cl">
@@ -88,13 +75,13 @@
 	</form>
 </article>
 <script type="text/javascript">
-$(function(){
-	$('.skin-minimal input').iCheck({
-		checkboxClass: 'icheckbox-blue',
-		radioClass: 'iradio-blue',
-		increaseArea: '20%'
-	});
+$('.skin-minimal input').iCheck({
+	checkboxClass: 'icheckbox-blue',
+	radioClass: 'iradio-blue',
+	increaseArea: '20%'
+});
 
+$(function(){
 	$("#form-member-add").validate({
 		rules:{
 			name:{
@@ -104,11 +91,8 @@ $(function(){
 				required:true,
 				isMobile:true
 			},
-			loanTime:{
-				required:true
-			},
-			repaymentTime:{
-				required:true
+			typeId:{
+				required:true,
 			},
 		},
 		onkeyup:false,
@@ -117,7 +101,7 @@ $(function(){
 		submitHandler:function(form){
 			$(form).ajaxSubmit({
 				type: 'post',
-				url: "/borrower/add" ,
+				url: "/person/add" ,
 				success: function(data){
 					layer.msg(data.msg,{icon:1,time:1000});
 					if(data.result){

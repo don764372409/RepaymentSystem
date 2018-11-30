@@ -4,24 +4,32 @@
 <mapper namespace="com.yuanmaxinxi.dao.borrower.BorrowerDAO">
 	<resultMap type="Borrower" id="BorrowerResultMap">
 		<id column="id" property="id"/>
-		<result column="name2" property="name2"/>
-		<result column="phone2" property="phone2"/>
+		<result column="number" property="number"/>
 		<result column="name" property="name"/>
 		<result column="phone" property="phone"/>
 		<result column="loanTime" property="loanTime"/>
 		<result column="repaymentTime" property="repaymentTime"/>
+		<result column="typeId" property="typeId"/>
 	</resultMap>
-	<insert id="insert" parameterType="Borrower">
-		insert into t_borrower(name,phone,name2,phone2,loanTime,repaymentTime) values(#{name},#{phone},#{name2},#{phone2},#{loanTime},#{repaymentTime})
+	<insert id="insert" parameterType="Borrower" useGeneratedKeys="true" keyProperty="id">
+		insert into t_borrower(name,phone,number,typeId,loanTime,repaymentTime) values(#{name},#{phone},#{number},#{typeId},#{loanTime},#{repaymentTime})
+	</insert>
+	<insert id="insertPerson" parameterType="Map">
+		insert into t_borrower_person(bId,pId) values(#{bId},#{pId})
 	</insert>
 	<update id="update" parameterType="Borrower">
-		update t_borrower set name=#{name},phone=#{phone},name2=#{name2},phone2=#{phone2},loanTime=#{loanTime},repaymentTime=#{repaymentTime} where id=#{id}
+		update t_borrower set name=#{name},phone=#{phone},number=#{number},typeId=#{typeId},loanTime=#{loanTime},repaymentTime=#{repaymentTime} where id=#{id}
 	</update>
 	<delete id="delete" parameterType="Long">
 		delete from t_borrower where id=#{id}
 	</delete>
 	<select id="selectOneById" parameterType="Long" resultMap="BorrowerResultMap">
 		select * from t_borrower where id=#{id}
+	</select>
+	<select id="selectPersonsByBrrId" parameterType="Long" resultMap="com.yuanmaxinxi.dao.person.PersonDAO.PersonResultMap">
+		select * from t_person where id in(
+			select pId from t_borrower_person where bId=#{bId}
+		)
 	</select>
 	<select id="selectAll" resultMap="BorrowerResultMap">
 		select * from t_borrower

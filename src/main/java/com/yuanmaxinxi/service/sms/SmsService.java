@@ -1,4 +1,5 @@
 package com.yuanmaxinxi.service.sms;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -8,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.yuanmaxinxi.dao.borrower.BorrowerDAO;
 import com.yuanmaxinxi.dao.content.ContentDAO;
 import com.yuanmaxinxi.dao.sms.SmsDAO;
 import com.yuanmaxinxi.dao.user.UserDAO;
@@ -16,6 +16,7 @@ import com.yuanmaxinxi.domain.borrower.Borrower;
 import com.yuanmaxinxi.domain.content.Content;
 import com.yuanmaxinxi.domain.sms.Sms;
 import com.yuanmaxinxi.domain.user.User;
+import com.yuanmaxinxi.service.borrower.BorrowerService;
 import com.yuanmaxinxi.util.SMSUtil;
 @Service
 public class SmsService{
@@ -26,7 +27,8 @@ public class SmsService{
 	@Autowired
 	private UserDAO userDAO;
 	@Autowired
-	private BorrowerDAO borrowerDAO;
+	private BorrowerService borrowerService;
+	private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	@Transactional
 	public int insert(Sms obj){
 		return smsDAO.insert(obj);
@@ -54,7 +56,7 @@ public class SmsService{
 		List<Sms> list = smsDAO.selectAll();
 		for (Sms sms : list) {
 			if (sms.getBrrId()!=null||sms.getBrrId()>0) {
-				Borrower brr = borrowerDAO.selectOneById(sms.getBrrId());
+				Borrower brr = borrowerService.selectOneById(sms.getBrrId());
 				sms.setBorrower(brr);
 			}
 		}
@@ -94,9 +96,7 @@ public class SmsService{
 			//发送失败  给管理员发送消息
 			if (status==0) {
 				User user = userDAO.selectOneByUsername("admin");
-				String ct = ("借款人姓名："+brr.getName()+" 手机号码:"+sms.getPhone()+" 紧急联系人：姓名："+brr.getName2()+" 电话："+brr.getPhone2()+" 短信未发送成功.");
-				System.err.println(ct);
-				System.err.println(user.getPhone());
+				String ct = ("合同编号:"+brr.getNumber() +" 联系人姓名："+brr.getName()+" 电话:"+brr.getPhone()+" 时间："+sdf.format(new Date())+" 短信未发送成功.");
 				sendErrorMessage(ct,user.getPhone());
 			}
 			sms.setStatus(status);
@@ -149,7 +149,7 @@ public class SmsService{
 				throw new RuntimeException("添加新模板失败");
 			}
 		}
-		send(borrowerDAO.selectOneById(borr.getId()), ct);
+		send(borrowerService.selectOneById(borr.getId()), ct);
 	}
 
 }

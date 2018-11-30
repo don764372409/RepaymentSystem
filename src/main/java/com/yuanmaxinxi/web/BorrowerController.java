@@ -1,5 +1,6 @@
 package com.yuanmaxinxi.web;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +11,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yuanmaxinxi.domain.borrower.Borrower;
 import com.yuanmaxinxi.domain.content.Content;
+import com.yuanmaxinxi.domain.person.Person;
 import com.yuanmaxinxi.dto.ResultDTO;
 import com.yuanmaxinxi.service.borrower.BorrowerService;
 import com.yuanmaxinxi.service.content.ContentService;
+import com.yuanmaxinxi.service.person.PersonService;
 import com.yuanmaxinxi.service.sms.SmsService;
 
 @Controller
@@ -24,6 +27,8 @@ public class BorrowerController {
 	private ContentService contentService;
 	@Autowired
 	private SmsService smsService;
+	@Autowired
+	private PersonService personService;
 	@RequestMapping("/list")
 	public String list(Model model) {
 		List<Borrower> list = borrowerService.selectAll();
@@ -32,7 +37,9 @@ public class BorrowerController {
 	}
 	
 	@RequestMapping("/showAdd")
-	public String showAdd() {
+	public String showAdd(Model model) {
+		List<Person> list = personService.selectAll();
+		model.addAttribute("list", list);
 		return "borrower/add";
 	}
 	@RequestMapping("/showSendMessage")
@@ -61,10 +68,10 @@ public class BorrowerController {
 		return dto;
 	}
 	@RequestMapping("/add")
-	public @ResponseBody ResultDTO add(Borrower borr) {
+	public @ResponseBody ResultDTO add(Borrower borr,Long[] pId) {
 		ResultDTO dto;
 		try {
-			borrowerService.insert(borr);
+			borrowerService.insert(borr,pId);
 			dto = ResultDTO.getIntance(true, "短信用户添加成功.");
 		} catch (Exception e) {
 			dto = ResultDTO.getIntance(false, e.getMessage());

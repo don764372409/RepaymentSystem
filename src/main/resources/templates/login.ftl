@@ -58,6 +58,14 @@
 		function changeImg(ele){
 			ele.src = "/login/code?"+new Date().getTime();
 		}
+		$(function(){
+			$(window).keypress(function(event){
+				var keycode = event.keyCode;
+				if(keycode==13){
+					submitForm();
+				}
+			});
+		})
 	</script>
 </body>
 </html>

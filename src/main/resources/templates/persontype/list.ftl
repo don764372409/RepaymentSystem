@@ -22,7 +22,7 @@
 <title>用户管理</title>
 </head>
 <body>
-<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 短信模板管理 <span class="c-gray en">&gt;</span> 短信模板 <a class="btn btn-success radius r btn-refresh" style="line-height:1.6em;margin-top:3px" onclick="location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 用户管理 <span class="c-gray en">&gt;</span> 用户类别管理 <a class="btn btn-success radius r btn-refresh" style="line-height:1.6em;margin-top:3px" onclick="location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="pd-20">
 <!--   <div class="text-c"> 短信发送时间： -->
 <!--     <input type="text" onfocus="WdatePicker()" id="datemin" class="input-text Wdate" style="width:120px;"> -->
@@ -33,37 +33,22 @@
 <!--   </div> -->
   <div class="cl pd-5 bg-1 bk-gray mt-20">
 <!--     <span class="l"><a href="javascript:;" onclick="deleteObj()" class="btn btn-danger radius"><i class="icon-trash"></i> 删除用户</a> -->
-    <a href="javascript:;" onclick="addObj('添加短信模板','/content/showAdd')" class="btn btn-primary radius"><i class="icon-plus"></i> 添加短信模板</a></span>
+<!--     <a href="javascript:;" onclick="addObj('添加短信模板','/content/showAdd')" class="btn btn-primary radius"><i class="icon-plus"></i> 添加短信模板</a></span> -->
     <span class="r">共有数据：<strong>${list?size}</strong> 条</span>
   </div>
   <div class="mt-20"></div>
   <table class="table table-border table-bordered table-hover table-bg table-sort">
     <thead>
       <tr class="text-c">
-        <th width="40">ID</th>
-        <th width="100">模板标题</th>
-        <th width="100">模板内容</th>
-        <th width="100">是否默认模板</th>
-        <th width="100">操作</th>
+        <th width="20">ID</th>
+        <th width="100">类别名称</th>
       </tr>
     </thead>
     <tbody>
     <#list list as obj>
       <tr class="text-c">
         <td>${obj.id}</td>
-        <td>${obj.title}</td>
-        <td>${obj.content}</td>
-        <td>
-        	<#if obj.defaultUse==1>
-        		<span class="label label-success radius">是 默 认</span>
-        		<#else>
-	        		<span class="label radius">不是默认</span>
-        	</#if>	
-        	</td>
-        <td class="f-14 user-manage">
-        	<a title="编辑" href="javascript:;" onclick="edit('修改短信模板','/content/showEdit',${obj.id})" class="btn btn-primary radius" style="text-decoration:none">修改</a>
-        	<a title="删除" href="javascript:;" onclick="deleteObj(this,'${obj.id}','/content/delete',${obj.id})" class="btn btn-primary radius" style="text-decoration:none">删除</a>
-       	</td>
+        <td>${obj.name}</td>
       </tr>
      </#list>
     </tbody>
@@ -96,7 +81,7 @@ $('.table-sort').dataTable({
 	"bFilter": true,//过滤功能
 	"bPaginate": true,//翻页信息
 	"bInfo": false,//数量信息
-	"aaSorting": [[ 0, "desc" ]],//默认第几个排序
+// 	"aaSorting": [[ 0, "desc" ]],//默认第几个排序
 	"bStateSave": true,//状态保存
 	"aoColumnDefs": [
 	  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
@@ -123,7 +108,7 @@ function edit(title,url,id){
 }
 
 function deleteObj(obj,o,u,id){
-	layer.confirm("确认要删除编号为"+o+"的模板吗？",function(index){
+	layer.confirm("确认要删除编号为1"+o+"的模板吗？",function(index){
 		$.ajax({
 			type: 'POST',
 			url: u,

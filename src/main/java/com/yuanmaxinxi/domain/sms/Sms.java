@@ -55,5 +55,10 @@ public class Sms {
 	public void setStatus(int status) {
 		this.status = status;
 	}
+	@Override
+	public String toString() {
+		return "Sms [id=" + id + ", phone=" + phone + ", sendTime=" + sendTime + ", status=" + status + ", brrId="
+				+ brrId + ", borrower=" + borrower + ", content=" + content + "]";
+	}
 	
 }

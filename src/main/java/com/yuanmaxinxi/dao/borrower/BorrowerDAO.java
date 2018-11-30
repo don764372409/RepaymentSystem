@@ -1,8 +1,11 @@
 package com.yuanmaxinxi.dao.borrower;
 import com.yuanmaxinxi.domain.borrower.Borrower;
+import com.yuanmaxinxi.domain.person.Person;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 import java.util.List;
+import java.util.Map;
 @Mapper
 @Repository
 public interface BorrowerDAO{
@@ -15,5 +18,9 @@ public interface BorrowerDAO{
 	Borrower selectOneById(Long id);
 
 	List<Borrower> selectAll();
+
+	int insertPerson(Map<String, Long> map);
+
+	List<Person> selectPersonsByBrrId(Long bId);
 
 }

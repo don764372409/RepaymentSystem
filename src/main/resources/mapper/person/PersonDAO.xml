@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuanmaxinxi.dao.person.PersonDAO">
+	<resultMap type="Person" id="PersonResultMap">
+		<id column="id" property="id"/>
+		<result column="name" property="name"/>
+		<result column="phone" property="phone"/>
+		<result column="remark" property="remark"/>
+		<result column="typeId" property="typeId"/>
+	</resultMap>
+	<insert id="insert" parameterType="Person">
+		insert into t_person(name,phone,remark,typeId) values(#{name},#{phone},#{remark},#{typeId})
+	</insert>
+	<update id="update" parameterType="Person">
+		update t_person set name=#{name},phone=#{phone},remark=#{remark},typeId=#{typeId} where id=#{id}
+	</update>
+	<delete id="delete" parameterType="Long">
+		delete from t_person where id=#{id}
+	</delete>
+	<select id="selectOneById" parameterType="Long" resultMap="PersonResultMap">
+		select * from t_person where id=#{id}
+	</select>
+	<select id="selectAll" resultMap="PersonResultMap">
+		select * from t_person
+	</select>
+</mapper>
