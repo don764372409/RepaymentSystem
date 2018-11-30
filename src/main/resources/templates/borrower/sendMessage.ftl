@@ -56,7 +56,11 @@
 				<span class="select-box">
 				  <select class="select" id="contentSelect" name="contentId" size="1" onchange="fullTextArea(this)">
 				  	<#list list as content>
-				    	<option value="${content.id}" selected>${content.title}</option>
+				  		<#if content.defaultUse ==1>
+				    		<option value="${content.id}" selected>${content.title}</option>
+				    		<#else>
+					    	<option value="${content.id}">${content.title}</option>
+				    	</#if>
 				    </#list>
 				  </select>
 				</span>
