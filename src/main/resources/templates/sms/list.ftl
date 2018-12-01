@@ -63,16 +63,14 @@
     <#list list as obj>
       <tr class="text-c">
         <td>
-        	<#if obj.borrower??>
-        		${obj.name}
-        	</#if>
+       		${obj.name}
         </td>
         <td>${obj.phone?if_exists}</td>
         <td>
        		 <#if obj.status==1>
        		 	${obj.content?if_exists}
         		<#else>
-        		通知管理员，借款人姓名：${obj.name?if_exists} 电话：${obj.phone?if_exists} 短信未发送成功.
+        		通知管理员,${obj.name?if_exists} 电话：${obj.phone?if_exists} 短信未发送成功.
         	</#if>	
         </td>
         <td>
