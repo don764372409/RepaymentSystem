@@ -23,10 +23,11 @@
 	<insert id="insert" parameterType="Borrower" useGeneratedKeys="true" keyProperty="id">
 		insert into t_borrower(name,phone,number,loanTime,repaymentTime,
 			name11,phone11,name12,phone12,
-			name21,phone21,name22,phone22,name23,phone23
+			name21,phone21,name22,phone22,name23,phone23,remark
 		) values(#{name},#{phone},#{number},#{loanTime},#{repaymentTime},
 			#{name11},#{phone11},#{name12},#{phone12},
-			#{name21},#{phone21},#{name22},#{phone22},#{name23},#{phone23}
+			#{name21},#{phone21},#{name22},#{phone22},#{name23},#{phone23},
+			#{remark}
 		)
 	</insert>
 	<insert id="insertPerson" parameterType="Map">
@@ -35,7 +36,8 @@
 	<update id="update" parameterType="Borrower">
 		update t_borrower set name=#{name},phone=#{phone},number=#{number},loanTime=#{loanTime},repaymentTime=#{repaymentTime},
 			name11=#{name11},phone11=#{phone11},name12=#{name12},phone12=#{phone12},
-			name21=#{name21},phone21=#{phone21},name22=#{name22},phone22=#{phone22},name23=#{name23},phone23=#{phone23}
+			name21=#{name21},phone21=#{phone21},name22=#{name22},phone22=#{phone22},name23=#{name23},phone23=#{phone23},
+			remark=#{remark}
 		where id=#{id}
 	</update>
 	<delete id="delete" parameterType="Long">

@@ -90,6 +90,7 @@ public class DBUtil {
 			"  loanTime date NOT NULL,\r\n" + 
 			"  repaymentTime date NOT NULL," + 
 			"  number varchar(255) NOT NULL," + 
+			"  remark varchar(255)," + 
 			"  PRIMARY KEY (id)\r\n" + 
 			")";
 //			sql = "drop table t_borrower";

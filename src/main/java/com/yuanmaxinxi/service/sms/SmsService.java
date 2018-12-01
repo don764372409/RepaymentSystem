@@ -83,10 +83,13 @@ public class SmsService{
 	@Transactional
 	public void send(Borrower brr, Content content) {
 		try {
+			String name = brr.getName();
+			int index = name.indexOf("：");
+			name = name.substring(index+1);
 			Map<String, String> map = SMSUtil.sendmsg(brr.getPhone(), content.getContent());
 			Sms sms = new Sms();
 			sms.setBrrId(brr.getId());
-			sms.setName(brr.getName());
+			sms.setName(name);
 			sms.setPhone(brr.getPhone());
 			sms.setSendTime(new Date());
 			sms.setContent(content.getContent());
@@ -97,7 +100,8 @@ public class SmsService{
 			//发送失败  给管理员发送消息
 			if (status==0) {
 				User user = userDAO.selectOneByUsername("admin");
-				String ct = ("合同编号:"+brr.getNumber() +" 联系人姓名："+brr.getName()+" 电话:"+brr.getPhone()+" 时间："+sdf.format(new Date())+" 短信未发送成功.");
+				
+				String ct = ("合同编号:"+brr.getNumber() +" 姓名："+name+" 电话:"+brr.getPhone()+" 时间："+sdf.format(new Date())+" 短信未发送成功.");
 				sendErrorMessage(ct,user.getPhone());
 			}
 			sms.setStatus(status);

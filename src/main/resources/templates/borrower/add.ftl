@@ -46,81 +46,63 @@
 		<div class="row cl">
 			<label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>姓名：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="请输入姓名" name="name">
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>手机：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="请输入手机" name="phone">
+				<input type="text" class="input-text" value="" placeholder="请输入姓名" name="name" style="width:40%">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;手&nbsp;&nbsp;机：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="text" class="input-text" value="" placeholder="请输入手机" name="phone" style="width:40%">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>借款起止时间：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" placeholder="请输入借款起始时间" onfocus="WdatePicker()" name="loanTime" class="input-text Wdate" style="width:40%">
-				-
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<input type="text" placeholder="请输入还款截止时间" onfocus="WdatePicker()" name="repaymentTime" class="input-text Wdate" style="width:40%">	
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-3 col-sm-3">紧联人姓名1：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="请输入紧联人姓名" name="name11">
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-3 col-sm-3">紧联人手机1：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="请输入紧联人手机" name="phone11">
+				<input type="text" class="input-text" value="" placeholder="请输入紧联人姓名" name="name11" style="width:40%">
+				紧联人手机1：
+				<input type="text" class="input-text" value="" placeholder="请输入紧联人手机" name="phone11" style="width:40%">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-3 col-sm-3">紧联人姓名2：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="请输入紧联人姓名" name="name12">
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-3 col-sm-3">紧联人手机2：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="请输入紧联人手机" name="phone12">
+				<input type="text" class="input-text" value="" placeholder="请输入紧联人姓名" name="name12" style="width:40%">
+				紧联人手机2：
+				<input type="text" class="input-text" value="" placeholder="请输入紧联人手机" name="phone12" style="width:40%">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-3 col-sm-3">担保人姓名1：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="请输入担保人姓名" name="name21">
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-3 col-sm-3">担保人手机1：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="请输入担保人手机" name="phone21">
+				<input type="text" class="input-text" value="" placeholder="请输入担保人姓名" name="name21" style="width:40%">
+				担保人手机1：
+				<input type="text" class="input-text" value="" placeholder="请输入担保人手机" name="phone21" style="width:40%">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-3 col-sm-3">担保人姓名2：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="请输入担保人姓名" name="name22">
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-3 col-sm-3">担保人手机2：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="请输入担保人手机" name="phone22">
+				<input type="text" class="input-text" value="" placeholder="请输入担保人姓名" name="name22" style="width:40%">
+				担保人手机2：
+				<input type="text" class="input-text" value="" placeholder="请输入担保人手机" name="phone22" style="width:40%">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-3 col-sm-3">担保人姓名3：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="请输入担保人姓名" name="name23">
+				<input type="text" class="input-text" value="" placeholder="请输入担保人姓名" name="name23" style="width:40%">
+				担保人手机3：
+				<input type="text" class="input-text" value="" placeholder="请输入担保人手机" name="phone23" style="width:40%">
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-3 col-sm-3">担保人手机3：</label>
+			<label class="form-label col-xs-3 col-sm-3">备注：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="请输入担保人手机" name="phone23">
+				<textarea name="remark" cols="" rows="" class="textarea" placeholder="请输入备注信息"></textarea>
 			</div>
 		</div>
 		<div class="row cl">

@@ -7,8 +7,6 @@ import java.util.Map;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.yuanmaxinxi.domain.person.PersonType;
-
 public class Borrower {
 	private Long id;
 	private String name;
@@ -28,8 +26,15 @@ public class Borrower {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date repaymentTime;
 	private String number;//合同编号
+	private String remark;//备注
 	private List<Map<String,String>> ps = new ArrayList<>();
 	
+	public String getRemark() {
+		return remark;
+	}
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
 	public String getName11() {
 		return name11;
 	}

@@ -20,6 +20,12 @@
 <script>DD_belatedPNG.fix('*');</script>
 <![endif]-->
 <title>用户管理</title>
+<style type="text/css">
+	td{
+		max-height:150px;
+		overflow: hidden;
+	}
+</style>
 </head>
 <body>
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 用户管理 <span class="c-gray en">&gt;</span> 合同联系人管理 <a class="btn btn-success radius r btn-refresh" style="line-height:1.6em;margin-top:3px" onclick="location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
@@ -40,20 +46,19 @@
   <table class="table table-border table-bordered table-hover table-bg table-sort">
     <thead>
       <tr class="text-c">
-        <th width="40">ID</th>
-        <th width="100">合同编号</th>
-        <th width="60">姓名</th>
-        <th width="90">手机</th>
+        <th width="60">合同编号</th>
+        <th width="30">姓名</th>
+        <th width="30">手机</th>
         <th width="120">其他联系信息</th>
-        <th width="100">借款起始时间</th>
-        <th width="100">借款截止时间</th>
-        <th width="220">操作</th>
+        <th width="120">备注</th>
+        <th width="50">借款起始时间</th>
+        <th width="50">借款截止时间</th>
+        <th width="50">操作</th>
       </tr>
     </thead>
     <tbody>
     <#list list as obj>
       <tr class="text-c">
-        <td>${obj.id}</td>
         <td>${obj.number}</td>
         <td>${obj.name}</td>
         <td>${obj.phone}</td>
@@ -66,12 +71,14 @@
 	        	</#list>
         	</#if>
         </td>
+        <td>${obj.remark!}</td>
         <td>${obj.loanTime?string("yyyy-MM-dd")}</td>
         <td>${obj.repaymentTime?string("yyyy-MM-dd")}</td>
         <td class="f-14 user-manage">
-        	<a title="编辑" href="javascript:;" onclick="edit('修改合同联系人','/borrower/showEdit',${obj.id})" class="btn btn-primary radius" style="text-decoration:none">修改</a>
-        	<a title="删除" href="javascript:;" onclick="deleteObj(this,'${obj.name}','/borrower/delete',${obj.id})" class="btn btn-primary radius" style="text-decoration:none">删除</a>
-        	<a title="送短信" href="javascript:;" onclick="sendMessage('发送短信','/borrower/showSendMessage',${obj.id})" class="btn btn-primary radius" style="text-decoration:none">发送短信</a>
+        	<a title="编辑" href="javascript:;" onclick="edit('修改合同联系人','/borrower/showEdit',${obj.id})" class="btn btn-primary radius" style="text-decoration:none;font-size: 10px;">修改</a>
+        	<a title="删除" href="javascript:;" onclick="deleteObj(this,'${obj.name}','/borrower/delete',${obj.id})" class="btn btn-primary radius" style="text-decoration:none;font-size: 10px;">删除</a>
+        	<br>
+        	<a title="送短信" href="javascript:;" onclick="sendMessage('发送短信','/borrower/showSendMessage',${obj.id})" class="btn btn-primary radius" style="text-decoration:none;font-size: 10px;">发送短信</a>
        	</td>
       </tr>
      </#list>

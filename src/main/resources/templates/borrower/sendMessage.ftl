@@ -39,6 +39,12 @@
 	<form action="" method="post" class="form form-horizontal" id="form-member-add">
 		<input name="id" type="hidden" value="${obj.id}">
 		<div class="row cl">
+			<label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>合同编号：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" readonly="readonly" value="${obj.number}" placeholder="请输入合同编号"  >
+			</div>
+		</div>
+		<div class="row cl">
 			<label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>姓名：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<span class="select-box">
@@ -73,7 +79,13 @@
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-3 col-sm-3">还款时间：</label>
+			<label class="form-label col-xs-3 col-sm-3">备注：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<textarea cols="" rows="" class="textarea" readonly="readonly" placeholder="">${obj.remark}</textarea>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-3 col-sm-3">发送内容：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<textarea name="content" cols="" rows="" class="textarea"  placeholder="请选择短信模板内容"></textarea>
 			</div>
