@@ -39,15 +39,27 @@
 	<form action="" method="post" class="form form-horizontal" id="form-member-add">
 		<input name="id" type="hidden" value="${obj.id}">
 		<div class="row cl">
-			<label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>姓名：</label>
+			<label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>选择模板：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${obj.name}" placeholder="请输入姓名" name="name">
+				<span class="select-box">
+				  <select class="select" name="name" size="1" onchange="selectPhone(this)">
+				  	<#list obj.ps as p>
+			    		<option value="${p.name}">${p.name}</option>
+				    </#list>
+				  </select>
+				</span>
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>手机：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${obj.phone}" placeholder="请输入手机" name="phone">
+				<span class="select-box">
+				  <select class="select" name="phone" size="1">
+				  	<#list obj.ps as p>
+			    		<option value="${p.name}">${p.phone}</option>
+				    </#list>
+				  </select>
+				</span>
 			</div>
 		</div>
 		<div class="row cl">
@@ -89,6 +101,9 @@ function fullTextArea(el){
 	var id = $(el).val();
 	getContentById(id);
 }
+function selectPhone(ele){
+	$("select[name=phone]").val($(ele).val());
+}
 $(function(){
 	$("#form-member-add").validate({
 		rules:{
@@ -97,7 +112,6 @@ $(function(){
 			},
 			phone:{
 				required:true,
-				isMobile:true
 			},
 			content:{
 				required:true

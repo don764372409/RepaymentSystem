@@ -6,6 +6,7 @@ import com.yuanmaxinxi.domain.borrower.Borrower;
 
 public class Sms {
 	private Long id;
+	private String name;
 	private String phone;
 	private Date sendTime;
 	private int status;
@@ -13,6 +14,12 @@ public class Sms {
 	private Borrower borrower;
 	private String content;//短信发送内容
 	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public Borrower getBorrower() {
 		return borrower;
 	}

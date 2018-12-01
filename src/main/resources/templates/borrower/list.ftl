@@ -60,7 +60,7 @@
         <td>
         	<#if obj.ps??>
 	        	<#list obj.ps as p>
-	        		${p.type.name}:${p.name} ${p.phone}<br>
+	        		${p.key}<br>
 	        		<#else>
 	        		无
 	        	</#list>

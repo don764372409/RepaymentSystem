@@ -77,7 +77,7 @@ public class SmsService{
 	}
 	/**
 	 * 发送消息
-	 * @param brr
+	 * @param brr 包含 Id name:name可能是其他联系人  phone：是其他联系人的电话
 	 * @param content
 	 */
 	@Transactional
@@ -86,6 +86,7 @@ public class SmsService{
 			Map<String, String> map = SMSUtil.sendmsg(brr.getPhone(), content.getContent());
 			Sms sms = new Sms();
 			sms.setBrrId(brr.getId());
+			sms.setName(brr.getName());
 			sms.setPhone(brr.getPhone());
 			sms.setSendTime(new Date());
 			sms.setContent(content.getContent());
@@ -105,6 +106,7 @@ public class SmsService{
 				throw new RuntimeException("添加发送记录失败");
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new RuntimeException(e.getMessage());
 		}
 	}
@@ -114,6 +116,7 @@ public class SmsService{
 			Map<String, String> map = SMSUtil.sendmsg(phone, content);
 			Sms sms = new Sms();
 			sms.setBrrId(0L);
+			sms.setName("管理员");
 			sms.setPhone(phone);
 			sms.setSendTime(new Date());
 			sms.setContent("向管理员发送失败记录短信");
@@ -149,7 +152,7 @@ public class SmsService{
 				throw new RuntimeException("添加新模板失败");
 			}
 		}
-		send(borrowerService.selectOneById(borr.getId()), ct);
+		send(borr, ct);
 	}
 
 }

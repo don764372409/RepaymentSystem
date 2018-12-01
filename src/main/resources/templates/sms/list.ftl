@@ -53,7 +53,6 @@
   <table class="table table-border table-bordered table-hover table-bg table-sort">
     <thead>
       <tr class="text-c">
-        <th width="60">联系人类别</th>
         <th width="60">联系人姓名</th>
         <th width="100">电话</th>
         <th width="200">发送内容</th>
@@ -65,24 +64,15 @@
       <tr class="text-c">
         <td>
         	<#if obj.borrower??>
-        		${obj.borrower.type.name}
-        		<#else>
-        		管理员
+        		${obj.name}
         	</#if>
         </td>
-        <td>
-        	<#if obj.borrower??>
-        		${obj.borrower.name}
-        		<#else>
-        		管理员
-        	</#if>
-       	</td>
         <td>${obj.phone?if_exists}</td>
         <td>
        		 <#if obj.status==1>
        		 	${obj.content?if_exists}
         		<#else>
-        		通知管理员，借款人姓名：${obj.borrower.name?if_exists} 电话：${obj.phone?if_exists} 短信未发送成功.
+        		通知管理员，借款人姓名：${obj.name?if_exists} 电话：${obj.phone?if_exists} 短信未发送成功.
         	</#if>	
         </td>
         <td>

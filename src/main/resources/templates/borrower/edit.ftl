@@ -37,10 +37,10 @@
 <body>
 <article class="page-container">
 	<form action="" method="post" class="form form-horizontal" id="form-member-add">
-		<input name="id" type="hidden" value="${obj.id}">
 		<div class="row cl">
 			<label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>合同编号：</label>
 			<div class="formControls col-xs-8 col-sm-9">
+				<input type="hidden" value="${obj.id}" name="id">
 				<input type="text" class="input-text" value="${obj.number}" placeholder="请输入合同编号" name="number">
 			</div>
 		</div>
@@ -57,31 +57,71 @@
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>相关联系人：</label>
+			<label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>借款起止时间：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<span class="select-box">
-				  <select class="select" name="pId" multiple="multiple" size="5" onchange="fullTextArea(this)">
-				  	<#list list as p>
-				  		<#if p.selected>
-				    		<option value="${p.id}" selected>${p.name}:${p.type.name}</option>
-				    		<#else>
-				    			<option value="${p.id}">${p.name}:${p.type.name}</option>
-				    	</#if>
-				    </#list>
-				  </select>
-				</span>
+				<input type="text" value="${obj.loanTime?date}" placeholder="请输入借款起始时间" onfocus="WdatePicker()" name="loanTime" class="input-text Wdate" style="width:40%">
+				-
+				<input type="text" value="${obj.repaymentTime?date}" placeholder="请输入还款截止时间" onfocus="WdatePicker()" name="repaymentTime" class="input-text Wdate" style="width:40%">	
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>借款起始时间：</label>
+			<label class="form-label col-xs-3 col-sm-3">紧联人姓名1：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" placeholder="请输入借款时间" onfocus="WdatePicker()" name="loanTime" value="${obj.loanTime?string('yyyy-MM-dd')}" class="input-text Wdate">	
+				<input type="text" class="input-text" value="${obj.name11}" placeholder="请输入紧联人姓名" name="name11">
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-3 col-sm-3">借款截止时间：</label>
+			<label class="form-label col-xs-3 col-sm-3">紧联人手机1：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" placeholder="请输入还款时间" onfocus="WdatePicker()" name="repaymentTime" value="${obj.repaymentTime?string('yyyy-MM-dd')}" class="input-text Wdate">	
+				<input type="text" class="input-text" value="${obj.phone11}" placeholder="请输入紧联人手机" name="phone11">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-3 col-sm-3">紧联人姓名2：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="${obj.name12}" placeholder="请输入紧联人姓名" name="name12">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-3 col-sm-3">紧联人手机2：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="${obj.phone12}" placeholder="请输入紧联人手机" name="phone12">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-3 col-sm-3">担保人姓名1：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="${obj.name21}" placeholder="请输入担保人姓名" name="name21">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-3 col-sm-3">担保人手机1：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="${obj.phone22}" placeholder="请输入担保人手机" name="phone21">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-3 col-sm-3">担保人姓名2：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="${obj.name22}" placeholder="请输入担保人姓名" name="name22">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-3 col-sm-3">担保人手机2：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="${obj.phone22}" placeholder="请输入担保人手机" name="phone22">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-3 col-sm-3">担保人姓名3：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="${obj.name23}" placeholder="请输入担保人姓名" name="name23">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-3 col-sm-3">担保人手机3：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="${obj.phone23}" placeholder="请输入担保人手机" name="phone23">
 			</div>
 		</div>
 		<div class="row cl">
@@ -93,19 +133,21 @@
 </article>
 <script type="text/javascript">
 $(function(){
+	$('.skin-minimal input').iCheck({
+		checkboxClass: 'icheckbox-blue',
+		radioClass: 'iradio-blue',
+		increaseArea: '20%'
+	});
+
 	$("#form-member-add").validate({
 		rules:{
+			number:{
+				required:true
+			},
 			name:{
 				required:true
 			},
 			phone:{
-				required:true,
-				isMobile:true
-			},
-			name2:{
-				required:true
-			},
-			phone2:{
 				required:true,
 				isMobile:true
 			},

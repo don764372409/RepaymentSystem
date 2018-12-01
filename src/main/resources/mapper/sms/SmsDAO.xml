@@ -4,6 +4,7 @@
 <mapper namespace="com.yuanmaxinxi.dao.sms.SmsDAO">
 	<resultMap type="Sms" id="SmsResultMap">
 		<id column="id" property="id"/>
+		<result column="name" property="name"/>
 		<result column="phone" property="phone"/>
 		<result column="sendTime" property="sendTime"/>
 		<result column="status" property="status"/>
@@ -11,11 +12,8 @@
 		<result column="content" property="content"/>
 	</resultMap>
 	<insert id="insert" parameterType="Sms">
-		insert into t_sms(phone,sendTime,status,brrId,content) values(#{phone},#{sendTime},#{status},#{brrId},#{content})
+		insert into t_sms(phone,name,sendTime,status,brrId,content) values(#{phone},#{name},#{sendTime},#{status},#{brrId},#{content})
 	</insert>
-	<update id="update" parameterType="Sms">
-		update t_sms set phone=#{phone},sendTime=#{sendTime},status=#{status},brrId=#{brrId} where id=#{id}
-	</update>
 	<delete id="delete" parameterType="Long">
 		delete from t_sms where id=#{id}
 	</delete>

@@ -7,18 +7,36 @@
 		<result column="number" property="number"/>
 		<result column="name" property="name"/>
 		<result column="phone" property="phone"/>
+		<result column="name11" property="name11"/>
+		<result column="phone11" property="phone11"/>
+		<result column="name12" property="name12"/>
+		<result column="phone12" property="phone12"/>
+		<result column="name21" property="name21"/>
+		<result column="phone21" property="phone21"/>
+		<result column="name22" property="name22"/>
+		<result column="phone22" property="phone22"/>
+		<result column="name23" property="name23"/>
+		<result column="phone23" property="phone23"/>
 		<result column="loanTime" property="loanTime"/>
 		<result column="repaymentTime" property="repaymentTime"/>
-		<result column="typeId" property="typeId"/>
 	</resultMap>
 	<insert id="insert" parameterType="Borrower" useGeneratedKeys="true" keyProperty="id">
-		insert into t_borrower(name,phone,number,typeId,loanTime,repaymentTime) values(#{name},#{phone},#{number},#{typeId},#{loanTime},#{repaymentTime})
+		insert into t_borrower(name,phone,number,loanTime,repaymentTime,
+			name11,phone11,name12,phone12,
+			name21,phone21,name22,phone22,name23,phone23
+		) values(#{name},#{phone},#{number},#{loanTime},#{repaymentTime},
+			#{name11},#{phone11},#{name12},#{phone12},
+			#{name21},#{phone21},#{name22},#{phone22},#{name23},#{phone23}
+		)
 	</insert>
 	<insert id="insertPerson" parameterType="Map">
 		insert into t_borrower_person(bId,pId) values(#{bId},#{pId})
 	</insert>
 	<update id="update" parameterType="Borrower">
-		update t_borrower set name=#{name},phone=#{phone},number=#{number},typeId=#{typeId},loanTime=#{loanTime},repaymentTime=#{repaymentTime} where id=#{id}
+		update t_borrower set name=#{name},phone=#{phone},number=#{number},loanTime=#{loanTime},repaymentTime=#{repaymentTime},
+			name11=#{name11},phone11=#{phone11},name12=#{name12},phone12=#{phone12},
+			name21=#{name21},phone21=#{phone21},name22=#{name22},phone22=#{phone22},name23=#{name23},phone23=#{phone23}
+		where id=#{id}
 	</update>
 	<delete id="delete" parameterType="Long">
 		delete from t_borrower where id=#{id}

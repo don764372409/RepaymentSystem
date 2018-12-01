@@ -99,9 +99,9 @@
 			<dt><i class="Hui-iconfont">&#xe62d;</i> 用户管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="/personType/list" data-title="用户类别管理" href="javascript:void(0)">用户类别管理</a></li>
+<!-- 					<li><a data-href="/personType/list" data-title="用户类别管理" href="javascript:void(0)">用户类别管理</a></li> -->
 					<li><a data-href="/borrower/list" data-title="合同联系人管理" href="javascript:void(0)">合同联系人管理</a></li>
-					<li><a data-href="/person/list" data-title="其他用户管理" href="javascript:void(0)">其他用户管理</a></li>
+<!-- 					<li><a data-href="/person/list" data-title="其他用户管理" href="javascript:void(0)">其他用户管理</a></li> -->
 			</ul>
 		</dd>
 	</dl>
