@@ -23,4 +23,6 @@ public interface BorrowerDAO{
 
 	List<Person> selectPersonsByBrrId(Long bId);
 
+	void deleteBorrPersonByBId(Long bId);
+
 }

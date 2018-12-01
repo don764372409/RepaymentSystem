@@ -62,7 +62,7 @@
 				<span class="select-box">
 				  <select class="select" name="pId" multiple="multiple" size="5" onchange="fullTextArea(this)">
 				  	<#list list as p>
-				    	<option value="${p.id}" selected>${p.name}:${p.type.name}</option>
+				    	<option value="${p.id}">${p.name}:${p.type.name}</option>
 				    </#list>
 				  </select>
 				</span>

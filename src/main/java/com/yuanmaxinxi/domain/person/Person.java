@@ -7,7 +7,14 @@ public class Person {
 	private String remark;
 	private Long typeId;
 	private PersonType type;//类别
+	private boolean selected;
 	
+	public boolean isSelected() {
+		return selected;
+	}
+	public void setSelected(boolean selected) {
+		this.selected = selected;
+	}
 	public PersonType getType() {
 		return type;
 	}

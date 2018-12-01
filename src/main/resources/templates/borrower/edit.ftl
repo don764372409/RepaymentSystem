@@ -39,6 +39,12 @@
 	<form action="" method="post" class="form form-horizontal" id="form-member-add">
 		<input name="id" type="hidden" value="${obj.id}">
 		<div class="row cl">
+			<label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>合同编号：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="${obj.number}" placeholder="请输入合同编号" name="number">
+			</div>
+		</div>
+		<div class="row cl">
 			<label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>姓名：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="${obj.name}" placeholder="请输入姓名" name="name">
@@ -51,15 +57,19 @@
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>紧急联系人：</label>
+			<label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>相关联系人：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${obj.name2}" placeholder="请输入姓名" name="name2">
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>紧联人电话：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${obj.phone2}" placeholder="请输入手机" name="phone2">
+				<span class="select-box">
+				  <select class="select" name="pId" multiple="multiple" size="5" onchange="fullTextArea(this)">
+				  	<#list list as p>
+				  		<#if p.selected>
+				    		<option value="${p.id}" selected>${p.name}:${p.type.name}</option>
+				    		<#else>
+				    			<option value="${p.id}">${p.name}:${p.type.name}</option>
+				    	</#if>
+				    </#list>
+				  </select>
+				</span>
 			</div>
 		</div>
 		<div class="row cl">

@@ -19,8 +19,6 @@ public class BorrowerService{
 	@Autowired
 	private BorrowerDAO borrowerDAO;
 	@Autowired
-	private PersonDAO personDAO;
-	@Autowired
 	private PersonTypeDAO personTypeDAO;
 	@Transactional
 	public void insert(Borrower obj, Long[] pIds){
@@ -54,7 +52,7 @@ public class BorrowerService{
 
 
 	@Transactional
-	public void update(Borrower obj){
+	public void update(Borrower obj, Long[] pIds){
 		if (obj.getId()==null||obj.getId()<=0) {
 			throw new RuntimeException("非法访问.");
 		}
@@ -70,9 +68,22 @@ public class BorrowerService{
 		if (obj.getRepaymentTime()==null) {
 			throw new RuntimeException("还款时间不能为空.");
 		}
+		obj.setTypeId(1L);
 		int i = borrowerDAO.update(obj);
 		if (i!=1) {
 			throw new RuntimeException("短信用户修改失败,请稍后重试.");
+		}
+		//先删除中间表数据,再重新加
+		borrowerDAO.deleteBorrPersonByBId(obj.getId());
+		for (Long pId : pIds) {
+			Map<String,Long> map  = new HashMap<>();
+			map.put("pId", pId);
+			map.put("bId", obj.getId());
+			int j = borrowerDAO.insertPerson(map);
+			if (j!=1) {
+				throw new RuntimeException("相关联系人添加失败,请稍后重试.");
+			}
+
 		}
 	}
 
@@ -100,6 +111,7 @@ public class BorrowerService{
 				cash.put(typeId, py);
 			}
 			brr.setType(py);
+			brr.setPs(selectPersonsByBrrId(brr.getId()));
 		}
 		return brr;
 	}

@@ -23,6 +23,9 @@
 	<delete id="delete" parameterType="Long">
 		delete from t_borrower where id=#{id}
 	</delete>
+	<delete id="deleteBorrPersonByBId" parameterType="Long">
+		delete from t_borrower_person where bId=#{bId}
+	</delete>
 	<select id="selectOneById" parameterType="Long" resultMap="BorrowerResultMap">
 		select * from t_borrower where id=#{id}
 	</select>

@@ -1,6 +1,6 @@
 package com.yuanmaxinxi.web;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +54,20 @@ public class BorrowerController {
 	public String showEdit(Long id,Model model) {
 		Borrower obj = borrowerService.selectOneById(id);
 		model.addAttribute("obj", obj);
+		List<Person> list = personService.selectAll();
+		model.addAttribute("list", list);
+		
+		List<Long> pIds = new ArrayList<>();
+		
+		List<Person> ps = obj.getPs();
+		for (Person person : ps) {
+			pIds.add(person.getId());
+		}
+		for (Person person : list) {
+			if (pIds.contains(person.getId())) {
+				person.setSelected(true);
+			}
+		}
 		return "borrower/edit";
 	}
 	@RequestMapping("/sendMessage")
@@ -79,10 +93,10 @@ public class BorrowerController {
 		return dto;
 	}
 	@RequestMapping("/edit")
-	public @ResponseBody ResultDTO edit(Borrower borr) {
+	public @ResponseBody ResultDTO edit(Borrower borr,Long[] pId) {
 		ResultDTO dto;
 		try {
-			borrowerService.update(borr);
+			borrowerService.update(borr,pId);
 			dto = ResultDTO.getIntance(true, "短信用户修改成功.");
 		} catch (Exception e) {
 			dto = ResultDTO.getIntance(false, e.getMessage());
