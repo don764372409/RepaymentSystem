@@ -67,11 +67,13 @@
 	        	<#list obj.ps as p>
 	        		${p.key}<br>
 	        		<#else>
-	        		无
+	        		无其他联系人
 	        	</#list>
         	</#if>
         </td>
-        <td>${obj.remark!}</td>
+        <td>
+       		${obj.remark!}
+       	</td>
         <td>${obj.loanTime?string("yyyy-MM-dd")}</td>
         <td>${obj.repaymentTime?string("yyyy-MM-dd")}</td>
         <td class="f-14 user-manage">

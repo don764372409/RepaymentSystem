@@ -69,6 +69,8 @@ public class BorrowerController {
 	public @ResponseBody ResultDTO sendMessage(Borrower borr,String content,String isSave) {
 		ResultDTO dto;
 		try {
+			String number = borrowerService.selectOneById(borr.getId()).getNumber();
+			borr.setNumber(number);
 			smsService.sendMessage(borr,content,isSave);
 			dto = ResultDTO.getIntance(true, "短信用户修改成功.");
 		} catch (Exception e) {

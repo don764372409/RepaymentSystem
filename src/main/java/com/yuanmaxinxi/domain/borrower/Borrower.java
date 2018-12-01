@@ -143,6 +143,6 @@ public class Borrower {
 				+ phone11 + ", name12=" + name12 + ", phone12=" + phone12 + ", name21=" + name21 + ", phone21="
 				+ phone21 + ", name22=" + name22 + ", phone22=" + phone22 + ", name23=" + name23 + ", phone23="
 				+ phone23 + ", loanTime=" + loanTime + ", repaymentTime=" + repaymentTime + ", number=" + number
-				+ ", ps=" + ps + "]";
+				+ ", remark=" + remark + ", ps=" + ps + "]";
 	}
 }

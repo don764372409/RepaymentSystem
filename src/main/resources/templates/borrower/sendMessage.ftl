@@ -124,6 +124,7 @@ $(function(){
 			},
 			phone:{
 				required:true,
+				isMobile:true
 			},
 			content:{
 				required:true

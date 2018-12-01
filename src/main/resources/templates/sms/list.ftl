@@ -56,6 +56,7 @@
         <th width="60">联系人姓名</th>
         <th width="100">电话</th>
         <th width="200">发送内容</th>
+        <th width="60">发送时间</th>
         <th width="40">发送状态</th>
       </tr>
     </thead>
@@ -72,6 +73,11 @@
         		<#else>
         		通知管理员,${obj.name?if_exists} 电话：${obj.phone?if_exists} 短信未发送成功.
         	</#if>	
+        </td>
+        <td>
+        	<#if obj.sendTime??>
+	        	${obj.sendTime?datetime}
+        	</#if>
         </td>
         <td>
         	<#if obj.status==1>

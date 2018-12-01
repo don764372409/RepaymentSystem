@@ -117,19 +117,19 @@ public class BorrowerService{
 			}
 			if (StringUtil.isNotNullAndEmpty(brr.getName21())&&StringUtil.isNotNullAndEmpty(brr.getPhone21())) {
 				Map<String,String> map21 = new HashMap<>();
-				map21.put("name","紧联人："+brr.getName21());
+				map21.put("name","担保人："+brr.getName21());
 				map21.put("phone",brr.getPhone21());
 				ps.add(map21);
 			}
 			if (StringUtil.isNotNullAndEmpty(brr.getName22())&&StringUtil.isNotNullAndEmpty(brr.getPhone22())) {
 				Map<String,String> map22 = new HashMap<>();
-				map22.put("name","紧联人："+brr.getName22());
+				map22.put("name","担保人："+brr.getName22());
 				map22.put("phone",brr.getPhone22());
 				ps.add(map22);
 			}
 			if (StringUtil.isNotNullAndEmpty(brr.getName23())&&StringUtil.isNotNullAndEmpty(brr.getPhone23())) {
 				Map<String,String> map23 = new HashMap<>();
-				map23.put("name","紧联人："+brr.getName23());
+				map23.put("name","担保人："+brr.getName23());
 				map23.put("phone",brr.getPhone23());
 				ps.add(map23);
 			}
@@ -167,24 +167,33 @@ public class BorrowerService{
 
 	public List<Borrower> selectAll(){
 		List<Borrower> list = borrowerDAO.selectAll();
-		List<Map<String,String>> ps = new ArrayList<>();
 		for (Borrower brr : list) {
-			Map<String,String> map11 = new HashMap<>();
-			map11.put("key","紧联人："+brr.getName11()+" 电话："+brr.getPhone11());
-			ps.add(map11);
-			Map<String,String> map12 = new HashMap<>();
-			map12.put("key","紧联人："+brr.getName12()+" 电话："+brr.getPhone12());
-			ps.add(map12);
-			Map<String,String> map21 = new HashMap<>();
-			map21.put("key","紧联人："+brr.getName21()+" 电话："+brr.getPhone21());
-			ps.add(map21);
-			Map<String,String> map22 = new HashMap<>();
-			map22.put("key","紧联人："+brr.getName22()+" 电话："+brr.getPhone22());
-			ps.add(map22);
-			Map<String,String> map23 = new HashMap<>();
-			map23.put("key","紧联人："+brr.getName23()+" 电话："+brr.getPhone23());
-			ps.add(map23);
-			
+			List<Map<String,String>> ps = new ArrayList<>();
+			if (StringUtil.isNotNullAndEmpty(brr.getName11())&&StringUtil.isNotNullAndEmpty(brr.getPhone11())) {
+				Map<String,String> map11 = new HashMap<>();
+				map11.put("key","紧联人："+brr.getName11()+" 电话："+brr.getPhone11());
+				ps.add(map11);
+			}
+			if (StringUtil.isNotNullAndEmpty(brr.getName12())&&StringUtil.isNotNullAndEmpty(brr.getPhone12())) {
+				Map<String,String> map12 = new HashMap<>();
+				map12.put("key","紧联人："+brr.getName12()+" 电话："+brr.getPhone12());
+				ps.add(map12);
+			}
+			if (StringUtil.isNotNullAndEmpty(brr.getName21())&&StringUtil.isNotNullAndEmpty(brr.getPhone21())) {
+				Map<String,String> map21 = new HashMap<>();
+				map21.put("key","担保人："+brr.getName21()+" 电话："+brr.getPhone21());
+				ps.add(map21);
+			}
+			if (StringUtil.isNotNullAndEmpty(brr.getName22())&&StringUtil.isNotNullAndEmpty(brr.getPhone22())) {
+				Map<String,String> map22 = new HashMap<>();
+				map22.put("key","担保人："+brr.getName22()+" 电话："+brr.getPhone22());
+				ps.add(map22);
+			}
+			if (StringUtil.isNotNullAndEmpty(brr.getName23())&&StringUtil.isNotNullAndEmpty(brr.getPhone23())) {
+				Map<String,String> map23 = new HashMap<>();
+				map23.put("key","担保人："+brr.getName23()+" 电话："+brr.getPhone23());
+				ps.add(map23);
+			}
 			brr.setPs(ps);
 		}
 //		for (Borrower brr : list) {

@@ -21,6 +21,6 @@
 		select * from t_sms where id=#{id}
 	</select>
 	<select id="selectAll" resultMap="SmsResultMap">
-		select * from t_sms
+		select * from t_sms order by sendTime desc
 	</select>
 </mapper>
