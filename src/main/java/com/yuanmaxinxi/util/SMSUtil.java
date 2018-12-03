@@ -1,10 +1,14 @@
 package com.yuanmaxinxi.util;
 
-import java.io.*;
-import java.net.*;
-import java.security.*;
-import java.text.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.security.MessageDigest;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Map;
 
 public class SMSUtil {
 	static String id = "8814"; // 帐号的ID
