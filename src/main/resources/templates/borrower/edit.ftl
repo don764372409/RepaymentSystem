@@ -138,23 +138,18 @@ $(function(){
 				isMobile:true
 			},
 			phone11:{
-				required:true,
 				isMobile:true
 			},
 			phone12:{
-				required:true,
 				isMobile:true
 			},
 			phone21:{
-				required:true,
 				isMobile:true
 			},
 			phone22:{
-				required:true,
 				isMobile:true
 			},
 			phone23:{
-				required:true,
 				isMobile:true
 			},
 			loanTime:{
@@ -168,6 +163,37 @@ $(function(){
 		focusCleanup:true,
 		success:"valid",
 		submitHandler:function(form){
+			var name11 = $("input[name=name11]").val().trim();
+			var phone11 = $("input[name=phone11]").val().trim();
+			if(name11&&!phone11){
+				layer.msg("紧联人1填写时，必须填写对应的电话",{icon:1,time:1000});
+				return;
+			}
+			var name12 = $("input[name=name12]").val().trim();
+			var phone12 = $("input[name=phone12]").val().trim();
+			if(name12&&!phone12){
+				layer.msg("紧联人2填写时，必须填写对应的电话",{icon:1,time:1000});
+				return;
+			}
+			var name21 = $("input[name=name21]").val().trim();
+			var phone21 = $("input[name=phone21]").val().trim();
+			if(name21&&!phone21){
+				layer.msg("担保人1填写时，必须填写对应的电话",{icon:1,time:1000});
+				return;
+			}
+			var name22 = $("input[name=name22]").val().trim();
+			var phone22 = $("input[name=phone22]").val().trim();
+			if(name22&&!phone22){
+				layer.msg("担保人2填写时，必须填写对应的电话",{icon:1,time:1000});
+				return;
+			}
+			var name23 = $("input[name=name23]").val().trim();
+			var phone23 = $("input[name=phone23]").val().trim();
+			if(name23&&!phone23){
+				layer.msg("担保人3填写时，必须填写对应的电话",{icon:1,time:1000});
+				return;
+			}
+			
 			$(form).ajaxSubmit({
 				type: 'post',
 				url: "/borrower/edit" ,
