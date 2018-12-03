@@ -25,6 +25,8 @@ public class SMSUtil {
 	 * 
 	 */
 	public static Map<String,String> sendmsg(String mobile,String content) throws Exception { // 发送短信的接口调用
+		System.err.println("发送电话："+mobile);
+		System.err.println("发送内容："+content);
 		String urlString = xml + "/v2sms.aspx?";
 		String send = "action=send&userid=" + id + "&timestamp=" + dateStr + "&sign=" + sign + "&mobile=" + mobile
 				+ "&content=" + signName+content + "&sendTime=&extno=";

@@ -85,7 +85,7 @@
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="${obj.name21}" placeholder="请输入担保人姓名" name="name21" style="width:40%;">
 				担保人手机1：
-				<input type="text" class="input-text" value="${obj.phone22}" placeholder="请输入担保人手机" name="phone21" style="width:40%;">
+				<input type="text" class="input-text" value="${obj.phone21}" placeholder="请输入担保人手机" name="phone21" style="width:40%;">
 			</div>
 		</div>
 		<div class="row cl">
@@ -134,6 +134,26 @@ $(function(){
 				required:true
 			},
 			phone:{
+				required:true,
+				isMobile:true
+			},
+			phone11:{
+				required:true,
+				isMobile:true
+			},
+			phone12:{
+				required:true,
+				isMobile:true
+			},
+			phone21:{
+				required:true,
+				isMobile:true
+			},
+			phone22:{
+				required:true,
+				isMobile:true
+			},
+			phone23:{
 				required:true,
 				isMobile:true
 			},
