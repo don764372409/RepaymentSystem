@@ -64,7 +64,7 @@
     <#list list as obj>
       <tr class="text-c">
         <td>
-       		${obj.name}
+       		${obj.name?if_exists}
         </td>
         <td>${obj.phone?if_exists}</td>
         <td>
